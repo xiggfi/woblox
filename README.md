@@ -8,19 +8,26 @@ Lightweight, simple framework. No custom syntax.
 Just a web-components compiler.
 
 
-## For simple web-apps 
+## Targets
 
-Kyanite is a good choice for web-apps with moderate amounts of
-functionality. Not heavy complexity.
-In these cases, adding a full web framework, adds complexity to
-projects. That may be more expensive, than the problems that are solving.
+Build time pre-compiled Webpages.
+For single-page or multi-page web-apps. Or static sites.
+Or in advanced use cases, server-side rendering.
 
-It's also useful to get the benefits of web-components. While keeping
-things simple. Avoiding custom framework syntax.
+
+## Description
 
 Kyanite is minimalist. All that it does, is to pre-compiles pages.
 With sets of web-components, into bundles.
 The web-component approach, eases page development and maintenance.
+
+Kyanite is an excelent choice for web-apps, with moderate amounts of
+functionality. Not heavy complexity.
+In these cases, adding a large web framework, adds complexity to
+projects. That may be more expensive, than the problems that are solving.
+
+It's useful to get the benefits of web-components. While keeping
+things simple. Avoiding custom framework syntax.
 
 It adds zero javascript. There is no "framework syntax" to learn.
 The API is small.
