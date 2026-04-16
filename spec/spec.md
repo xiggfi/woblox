@@ -28,13 +28,13 @@ The Kyanite Compiler performs the following steps:
       Containing the `customElements.define` logic for every component found.
     * Wraps the `<script>` content into the `connectedCallback` of the Web Component.
     * Puts web-component templates, at the top of page body.
-    * Injects `<script src="component.ts" type="module">` for each web-component.
+    * Injects `<script src="component-name.ts" type="module">` for each web-component.
       In the body, right after the templates.
-    * This step isplaced on `step/` dir.
+    * This step is put on `step/` dir.
 * **Compilation (final step):**:
     * Generates a distributable minified page bundle, from the intermediate step.
       Using `deno bundle` command.
-      Placed the `dist/` dir.
+      Put on `dist/` dir.
 
 
 ## Directory Structure
