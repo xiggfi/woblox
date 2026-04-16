@@ -33,13 +33,13 @@ function scan_components(path: string) {
 
 
 // Utility function to read files
-function load_file(path: string): string {
-
+export function load_file(path: string): string {
+    return Deno.readTextFileSync(path);
 }
 
 
 
 // Utility function to write files
-function write_file(path: string, content: string) {
-
+export function write_file(path: string, content: string) {
+    Deno.writeTextFileSync(path, content);
 }

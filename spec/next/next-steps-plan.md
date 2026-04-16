@@ -4,7 +4,7 @@ The project currently has its module skeletons set up, but the core implementati
 
 ## Phase 1: Core File System Operations (`code/file.ts`)
 The framework relies heavily on reading/writing files and scanning directories.
-- [ ] **Implement I/O Utilities:** Develop `load_file(path: string)` and `write_file(path: string, content: string)` using `Deno.readTextFileSync` and `Deno.writeTextFileSync` (or async equivalents).
+- [*] **Implement I/O Utilities:** Develop `load_file(path: string)` and `write_file(path: string, content: string)` using `Deno.readTextFileSync` and `Deno.writeTextFileSync` (or async equivalents).
 - [ ] **Component Discovery:** Implement `scan_components(path: string)`. This should traverse the `comps` directory, discover `.html` component files, and begin building out the `ComponentData` entries to be put into `data.ts`.
 - [ ] **Asset Copying:** Implement `copy_other_files()` to recursively copy any standard static assets (like images or global CSS) to both the `step/` and `dist/` destinations.
 
@@ -17,7 +17,7 @@ Web-component `.html` files must be parsed into usable classes and DOM templates
 
 ## Phase 3: The Intermediate Build Step (`code/build-step.ts` & `code/core.ts`)
 Building the `step` phase prepares the components for the browser or an external bundler.
-- [ ] **Page HTML Processing:** Load the user's `index.html` (or other target pages).
+- [] **Page HTML Processing:** Load the user's `index.html` (or other target pages).
 - [ ] **Template Injection:** Prepend all the parsed `<template>` contents for the dynamically discovered components into the `<body>` of the page.
 - [ ] **Component Script Injection:** Append `<script src="[component-name].ts" type="module"></script>` near the end of the `<body>` for every component.
 - [ ] **Emit Step Artifacts:** Save the generated `page.html` along with the individual dynamically written `[component-name].ts` code files to the `step/` output directory.
