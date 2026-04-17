@@ -29,7 +29,3 @@ It can contain directories. But directory hierarchy is not relevant.
 All components must strictly have unique names.
 
 In this step, we will only store the component name and path.
-
-
-
-
