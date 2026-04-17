@@ -55,7 +55,21 @@ my-project/
 
 ## File formats
 
-See `file-formats.md`
+See `file-formats.md` for details.
+
+This is the web-component file format:
+```html
+<!-- comps/comp-card.html -->
+<template mode="closed">
+  <div><slot></slot></div>
+</template>
+<style>
+  div { background-color: blue;  }
+</style>
+<script>
+  this.addEventListener('click', () => console.log('Clicked!'));
+</script>
+```
 
 
 ## Usage API

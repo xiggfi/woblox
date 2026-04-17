@@ -1,4 +1,4 @@
-# Next Steps Plan
+# Development Plan
 
 The project currently has its module skeletons set up, but the core implementation logic needs to be written.
 

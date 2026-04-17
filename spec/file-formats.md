@@ -1,11 +1,12 @@
 ## The Component Format (`.html`)
 Components are stored as `.html` files. They use a standard tag structure.
-They benefit from `.html` syntax highlight in code editors.
+They benefit from `.html` syntax highlight, in code editors.
 Component name is taken from the filename.
 A dash symbol in the component name, is required.
+Comps dir may have sub-dirs, but its hierarchy is meaningless. Names must be unique.
 
 ```html
-<!-- components/comp-card.html -->
+<!-- comps/comp-card.html -->
 <template mode="closed">
   <div>
     <slot></slot>

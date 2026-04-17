@@ -10,12 +10,12 @@ Just a web-components compiler.
 
 ## Targets
 
-Build time pre-compiled Webpages.
-For single-page or multi-page web-apps. Or static sites.
+Build time pre-compiled Web-apps.
+Single-page or multi-page. Static sites.
 Or in advanced use cases, server-side rendering.
 
 
-## Description
+## Usefulness
 
 Kyanite is minimalist. All that it does, is to pre-compiles pages.
 With sets of web-components, into bundles.
