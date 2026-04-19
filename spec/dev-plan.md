@@ -6,7 +6,7 @@ The project currently has its module skeletons set up, but the core implementati
 The framework relies heavily on reading/writing files and scanning directories.
 - [*] **Implement I/O Utilities:** Develop `load_file(path: string)` and `write_file(path: string, content: string)` using `Deno.readTextFileSync` and `Deno.writeTextFileSync` (or async equivalents).
 - [*] **Component Discovery:** Implement `scan_components(path: string)`. This should traverse the `comps` directory, discover `.html` component files, and begin building out the `ComponentData` entries to be put into `data.ts`.
-- [ ] **Asset Copying:** Implement `copy_other_files()` to recursively copy any standard static assets (like images or global CSS) to both the `step/` and `dist/` destinations.
+- [*] **Copying other files:** Implement "copy newer" to recursively copy everything, that is not a web-component (exclude `comps` dir). To both the `step/` and `dist/` destinations.
 
 
 ## Phase 2: Component Parsing and Compilation (`code/parse.ts`)

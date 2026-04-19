@@ -1,0 +1,5 @@
+# Deno
+deno.lock
+
+# Test files
+test/file-test/dist/
