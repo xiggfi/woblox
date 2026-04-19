@@ -8,24 +8,37 @@ We will be working on file operations.
 (`code/file.ts`)
 The framework relies heavily on reading/writing files and scanning directories.
 
+## Async functions
+We will use the "async" version of file functions.
+For efficient file operations.
+
 
 This commit
 ===========
 
-**Component Discovery:**
-Implement `scan_components(path: string)`. 
-This should traverse the `comps` directory, discover `.html` component files, and begin building out the `ComponentData` entries to be put into `data.ts`.
+## Copying other files
+Implement module to "copy newer files".
 
-Also implement any additional functionality or data, needed for scanning.
+For when users need to copy files from the `code/` directory.
+Into `step/` and `dist/` directories.
 
-We will use the "sync" version of file functions.
-To keep things simple. This is a build time tool.
-No need for realtime operations.
+Must check if the files has been modified, to overwrite them.
 
-The `comps` folder, is expected to contain strictly only web-component files. Of `.html` extension.
+Must omit the `comps` folder.
+Because these are web-components, that will be compiled, and generated as `.ts` scripts.
+In a later step.
 
-Each file, will be named as the web-component tag name.
-It can contain directories. But directory hierarchy is not relevant.
-All components must strictly have unique names.
+The files will be copied to configured `step/` and `dist/` directories.
+The configuration paths, are defined in `data.ts`.
 
-In this step, we will only store the component name and path.
+
+`.html` Web-pages will all be copied. In a later step, the user will
+overwrite the copied ones, with the framework-build ones.
+Since they have the same file type, they will be overwritten.
+For simplicity, we just copy all.
+
+
+
+
+
+
