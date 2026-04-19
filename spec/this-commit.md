@@ -17,7 +17,10 @@ This commit
 ===========
 
 ## Copying other files
-Implement module to "copy newer files".
+Implement "copy newer files".
+In `code/core.ts`.
+
+Using `file-util.ts`.
 
 For when users need to copy files from the `code/` directory.
 Into `step/` and `dist/` directories.

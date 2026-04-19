@@ -7,6 +7,7 @@ import { component_list } from "./data.ts"
 import { load_file } from "./file.ts"
 import { parse_component } from "./parse.ts"
 import { dir, page, page_list } from "./data.ts"
+import { copy_newer } from "./util/file-util.ts";
 
 
 
@@ -19,16 +20,25 @@ function load_components(dir: string) {
 
 
 // This must be done explicitly, by the user.
-// Copies all files outside of components dir, or that are pages.
-export function copy_other_files() {
-    copy_support_files_step()
-    copy_support_files_dist()
+// Copies all files outside of components dir.
+export async function copy_files() {
+
+    const src = dir.code
+    const dest = dir.step
+
+    try {
+        console.log("Syncing assets...");
+        await copy_newer(src, dest);
+        console.log("Sync complete!");
+    } catch (err) {
+        console.error("Sync failed:", err.message);
+    }
 }
 
 
 // Rebuilds component data, for those that has been modified only.
 function rebuild_components() {
-    
+
 }
 
 
@@ -45,7 +55,7 @@ export function build(pages?: string[]) {
 // Without parameter, builds all pages.
 export function build_step(pages?: string[]) {
     rebuild_components()
-    
+
     // ...
 }
 
@@ -56,7 +66,7 @@ export function build_step(pages?: string[]) {
 // Without parameter, builds all pages.
 export function build_dist(pages?: string[]) {
     rebuild_components()
-    
+
     // ...
 }
 
