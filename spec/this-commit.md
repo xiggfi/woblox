@@ -16,29 +16,13 @@ For efficient file operations.
 This commit
 ===========
 
-## Copying other files
-Implement "copy newer files".
-In `code/core.ts`.
+## Detect web-components in page
 
-Using `file-util.ts`.
+Function to detect the components used in a webpage.
+File: `code/page.ts`
 
-For when users need to copy files from the `code/` directory.
-Into `step/` and `dist/` directories.
+Web-components have a `<tag-name>` format. (with hyphens)
 
-Must check if the files has been modified, to overwrite them.
-
-Must omit the `comps` folder.
-Because these are web-components, that will be compiled, and generated as `.ts` scripts.
-In a later step.
-
-The files will be copied to configured `step/` and `dist/` directories.
-The configuration paths, are defined in `data.ts`.
-
-
-`.html` Web-pages will all be copied. In a later step, the user will
-overwrite the copied ones, with the framework-build ones.
-Since they have the same file type, they will be overwritten.
-For simplicity, we just copy all.
 
 
 

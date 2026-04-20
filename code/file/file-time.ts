@@ -1,6 +1,11 @@
+// file-time.ts
+//
+// Operations related to file timestamps.
+//
+
 import { walk } from "jsr:@std/fs/walk";
 import { dirname, join, relative } from "jsr:@std/path";
-import { assert } from "jsr:@std/assert";
+
 
 
 /* Usage
