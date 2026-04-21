@@ -1,4 +1,4 @@
-// step module
+// Build Step Module
 //
 // The step module handles the creation of the
 // intermediate-step files.
