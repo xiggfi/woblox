@@ -83,8 +83,13 @@ async function ensure_dir(path: string) {
 //
 // Recursively copies files from source to destination.
 // Only overwrites if the source file is more recent.
+// ignore: object : files and dirs to ignore (not implemented yet)
+// {
+//    files: string[] // List of files to ignore, (full path, including name)
+//    comps: string   // Pathname of the components dir
+// } 
 //
-export async function copy_newer(srcDir: string, destDir: string) {
+export async function copy_newer(srcDir: string, destDir: string, ignore: object) {
   // Verify source exists
   const srcStat = await Deno.stat(srcDir);
   if (!srcStat.isDirectory) {

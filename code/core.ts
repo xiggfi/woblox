@@ -28,7 +28,11 @@ export async function copy_files() {
 
     try {
         console.log("Syncing assets...");
-        await copy_newer(src, dest);
+        // 
+        let ignore = {
+            // #todo
+        }
+        await copy_newer(src, dest, ignore);
         console.log("Sync complete!");
     } catch (err) {
         console.error("Sync failed:", err.message);
@@ -36,16 +40,11 @@ export async function copy_files() {
 }
 
 
-// Rebuilds component data, for those that has been modified only.
-function rebuild_components() {
-
-}
 
 
 // Build both stpes.
 // Without parameter, builds all pages.
 export function build(pages?: string[]) {
-    rebuild_components()
     build_step(pages)
     build_dist(pages)
 }
