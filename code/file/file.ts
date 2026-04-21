@@ -10,16 +10,6 @@ import { component_data } from "../data.ts"
 
 
 
-
-// Copies all files that are not in web-component dir.
-// Into both destination dirs.
-function copy_other_files() {
-
-}
-
-
-
-
 // Scan a directory for component files
 // Creates ComponentData instances. And add it to the component_data Map.
 // Populates the component_data with names and paths.

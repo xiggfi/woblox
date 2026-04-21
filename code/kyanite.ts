@@ -50,11 +50,12 @@ export const kyanite = {
     },
 
     // Copies all files. Into both destination dirs.
-    // This MUST be done before building pages.
-    // And only once, or after page modifications.
-    // All pages will be overwritten, with the original source data.
-    // Those that are in thecomponents dir, are not copied.
-    copy_other_files: () => {
+    // This is done when the user decides.
+    // The user MUST set `pages.json` file, to list
+    // all Kyanite build pages. To not copy them.
+    // Failing to do so, will overwrite build pages, with the source.
+    // Web-components, are not copied.
+    copy_web_files: () => {
 
     },
 
