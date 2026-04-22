@@ -41,7 +41,9 @@ And for the build process. When building all pages.
 These steps are performed for both "step" and "dist" builds:
 This is done by `build-1-setup.ts` file.
 
-* **Read `pages.json` file.
+* **config file** Read `kyanite-config.json` file.
+  This file contains the list of pages to build.
+  And the directories configuration.
 
 * **Read page timestamps**:
   Reads the timestamps of the page `.html` files.
@@ -79,14 +81,11 @@ This is done by `build-2-step.ts` file.
       -> Set `component_data` `built` property, to true.
       To indicate that build process, for this web-component` is done.
 
-* **Parse changed components**:
-  For modified components only:
-  Extracts `<template>`, `<style>`, and `<script>` for each component.
-  Write it to `component_data`.
-
 * **Generation (intermediate step):** 
   * Reads the source page html, into a string. To operate on it.
-  * Repeats for each required web component:
+  * Repeats for each required web-component:
+    * Parse the component.
+      Extracts `<template>`, `<style>`, and `<script>` for each component.
     * Creates a `component.ts` file.
       The content, set to the content from the <script>, tag from the web-component `.html` definition file.
       This is an initial simple implementation. That will be improved in the future.
@@ -118,7 +117,7 @@ Modyfying them is also possible.
 my-project/
 ├── code/
 │   |── index.html    # A page template
-│   |── pages.json    # List of all kyanite pages in the project
+│   |── kyanite-config.json    # config
 |   └── comps/        # Component fragments
 |       ├── nav-bar.html
 |       └── user-card.html
@@ -148,10 +147,13 @@ This is the web-component file format:
 </script>
 ```
 
-
 ## Usage API
-
 See `usage.md`
+
+
+## Other operations
+See `other-ops.md`
+
 
 
 
