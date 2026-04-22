@@ -80,16 +80,19 @@ async function ensure_dir(path: string) {
 }
 
 
+// Describes files and dirs that should be ignored by copy_newer
+interface IgnoreFiles {
+  files: string[]       // list of file paths to ignore
+  dirs: string[]        // list of directory paths, to ignore
+}
+
+
 //
 // Recursively copies files from source to destination.
 // Only overwrites if the source file is more recent.
-// ignore: object : files and dirs to ignore (not implemented yet)
-// {
-//    files: string[] // List of files to ignore, (full path, including name)
-//    comps: string   // Pathname of the components dir
-// } 
+// ignore: IgnoreFiles : files and dirs to ignore (not implemented yet)
 //
-export async function copy_newer(srcDir: string, destDir: string, ignore: object) {
+export async function copy_newer(srcDir: string, destDir: string, ignore: IgnoreFiles) {
   // Verify source exists
   const srcStat = await Deno.stat(srcDir);
   if (!srcStat.isDirectory) {
