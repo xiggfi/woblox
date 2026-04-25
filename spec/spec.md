@@ -143,6 +143,8 @@ This is the web-component file format:
   div { background-color: blue;  }
 </style>
 <script>
+  // Create the component here
+  // ...
   this.addEventListener('click', () => console.log('Clicked!'));
 </script>
 ```

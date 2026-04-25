@@ -7,7 +7,7 @@ Comps dir may have sub-dirs, but its hierarchy is meaningless. Names must be uni
 
 ```html
 <!-- comps/comp-card.html -->
-<template mode="closed">
+<template id="comp-card">
   <div>
     <slot></slot>
   </div>
@@ -20,8 +20,20 @@ Comps dir may have sub-dirs, but its hierarchy is meaningless. Names must be uni
 </style>
 
 <script>
-  // This code runs inside the Custom Element class context
-  this.addEventListener('click', () => console.log('Clicked!'));
+    // This is copied into the script file.
+    customElements.define(
+      "comp-card",
+      class extends HTMLElement {
+        constructor() {
+          super();
+          let template = document.getElementById("comp-card");
+          let templateContent = template.content;
+
+          const shadowRoot = this.attachShadow({ mode: "closed" });
+          shadowRoot.appendChild(templateContent.cloneNode(true));
+        }
+      },
+    );
 </script>
 ```
 

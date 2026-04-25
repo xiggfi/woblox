@@ -2,7 +2,7 @@
 
 The framework will be implemnted in this way:
 * 1 Quick implementation of all low level functionality, with tests.
-* 2 Connection to user API (`kyanite.md`)
+* 2 Connection and refinement, of user API (`kyanite.ts`)
 * Refinements and fixes
 
 Refer to `spec.md` for operation details.
@@ -14,6 +14,7 @@ Next steps
 ## 1 Create a test project
 A minimal test project, in `/test-files` dir.
 This will be used by project test code.
+
 
 ## 2 Implement build setup
 File `build-1-setup.ts`
