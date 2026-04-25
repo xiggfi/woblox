@@ -1,0 +1,17 @@
+<template mode="closed">
+  <div class="box"><slot></slot></div>
+</template>
+<style>
+  .box {
+      background-color: #ffc6ff; /* pastel pink */
+      color: #333333;
+      font-weight: 800;
+      padding: 0.5rem;
+      border-radius: 4px;
+      margin-top: 0.5rem;
+      display: inline-block;
+  }
+</style>
+<script>
+  this.addEventListener('click', () => console.log('box-4 Clicked!'));
+</script>

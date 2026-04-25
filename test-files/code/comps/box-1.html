@@ -1,0 +1,21 @@
+<template mode="closed">
+  <div class="box"><slot></slot></div>
+</template>
+<style>
+  .box {
+      background-color: #a0c4ff; /* pastel blue */
+      color: #333333;
+      font-weight: 800; /* fat text */
+      padding: 1.5rem;
+      border-radius: 8px;
+      height: 100%;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+  }
+</style>
+<script>
+  this.addEventListener('click', () => console.log('box-1 Clicked!'));
+</script>
