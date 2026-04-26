@@ -21,15 +21,16 @@ export interface PageData {
     source_file_time: number    // timestamp
     step_build_time: number     // timestamp
     dist_build_time: number     // timestamp
+    dist_script_time: number    // timestamp
 }
 
 
 // This is the format for kyanite-config.json file
 export interface Config {
     pages: string[]
-    code_dir: string
-    step_dir: string
-    dist_dir: string
+    code_dir?: string
+    step_dir?: string
+    dist_dir?: string
 }
 
 
