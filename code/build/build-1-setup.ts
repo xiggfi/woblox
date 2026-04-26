@@ -9,14 +9,22 @@ import { load_file, scan_components } from "../file/file.ts";
 import { get_file_timestamp } from "../file/file-time.ts";
 
 export async function build_setup() {
-    // Read config file
+    const config = await read_config_file();
+    if (!config) return;
+
+    await read_page_timestamps(config);
+    await scan_comp_dir();
+    await read_web_component_timestamps();
+}
+
+async function read_config_file(): Promise<Config | null> {
     let config: Config;
     try {
         const configText = await load_file(`${dir.code}/kyanite-config.json`);
         config = JSON.parse(configText);
     } catch (e) {
         console.error("Failed to load or parse kyanite-config.json:", e);
-        return;
+        return null;
     }
 
     // Update directories if specified in config
@@ -24,7 +32,10 @@ export async function build_setup() {
     if (config.step_dir) dir.step = config.step_dir;
     if (config.dist_dir) dir.dist = config.dist_dir;
 
-    // Read page timestamps
+    return config;
+}
+
+async function read_page_timestamps(config: Config) {
     for (const pageName of config.pages) {
         page_data[pageName] = {
             file_path: `${dir.code}/${pageName}`,
@@ -34,11 +45,13 @@ export async function build_setup() {
             dist_script_time: await get_file_timestamp(`${dir.dist}/${pageName.replace(/\.html$/, '.js')}`)
         };
     }
+}
 
-    // Scan comp dir
+async function scan_comp_dir() {
     await scan_components(`${dir.code}/${dir.comps}`);
+}
 
-    // Read web-component timestamps
+async function read_web_component_timestamps() {
     for (const tagName in component_data) {
         const comp = component_data[tagName];
         comp.source_file_time = await get_file_timestamp(comp.file_path);
