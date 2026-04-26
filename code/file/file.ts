@@ -24,11 +24,10 @@ export async function scan_components(path: string) {
             component_data[tagName] = {
                 tag_name: tagName,
                 file_path: fullPath,
-                built: false,
-                template: "",
-                css: "",
-                js: "",
-                last_modified: new Date() // This will need changes. Should be last modified date.
+                build: false,
+                source_file_time: 0,
+                step_build_time: 0,
+                dist_build_time: 0
             };
         }
     }

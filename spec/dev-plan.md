@@ -14,7 +14,7 @@ Next steps
 ## 1 Create a test project
 A minimal test project, in `/test-files` dir.
 This will be used by project test code.
-
+**Done**
 
 ## 2 Implement build setup
 File `build-1-setup.ts`

@@ -16,16 +16,16 @@ export interface ComponentData {
 }
 
 
-interface PageData {
-    file_path: string
-    source_file_time: number
-    step_build_time: number
-    dist_build_time: number
+export interface PageData {
+    file_path: string           // full file path with filename
+    source_file_time: number    // timestamp
+    step_build_time: number     // timestamp
+    dist_build_time: number     // timestamp
 }
 
 
 // This is the format for kyanite-config.json file
-interface config {
+export interface Config {
     pages: string[]
     code_dir: string
     step_dir: string

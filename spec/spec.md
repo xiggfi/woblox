@@ -40,33 +40,40 @@ And for the build process. When building all pages.
 ### Build Setup (1)
 These steps are performed for both "step" and "dist" builds:
 This is done by `build-1-setup.ts` file.
+Involves reading file data, and storing it in state variables.
 
 * **config file** Read `kyanite-config.json` file.
   This file contains the list of pages to build.
+  (Full filepath with filename).
   And the directories configuration.
 
 * **Read page timestamps**:
   Reads the timestamps of the page `.html` files.
-  There are 4 timestamps to read:
+  Only for the user specified pages, that are going to be built.
+  
+  There are 4 timestamps to read for each page.
+  (Some files may not be there yet, so timestamp will be 0):
       * Page `code` file
       * Page `step` file
       * Page `dist` file
       * Page `dist` script file.
-  Store the timestamps, in `page_data` state var.
+      
   If the "step" is newer than source, no need to re-build. -> "Step" Build process done.
   If the "dist" is newer than source, no need to re-build. -> "Dist" Build process done.
+  
+  Store the 4 timestamps on `page_data` state var.
 
 * **Scan web-components directory:**
   Scans the "comps" directory, from "code" dir.
   * Gets components tag-names, filepath (from `code` dir), and timestamps.
 
-* Get web-component built scripts timestamps
-  For each web-component, get "step" script timestamp.
-  Store it on `component_data` state var.
+* **Read web-component timestamps**:
+  * For each web-component, get "step" script timestamp.
+  * Store it on `component_data` state var.
 
 
 ### Step Build (2)
-For the "step" build, the Kyanite Compiler performs the following steps:
+The following steps are performed for each specific page to build.
 This is done by `build-2-step.ts` file.
 
 * **Determine required components**:

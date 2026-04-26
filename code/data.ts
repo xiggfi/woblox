@@ -3,12 +3,15 @@
 // Data storage for kyanite
 
 
-import { ComponentData } from "./object.ts"
-
+import { ComponentData, PageData } from "./object.ts"
 
 
 // Storage for component data
 export const component_data: Record<string, ComponentData> = {}
+
+
+// state var - stores the page timestamps
+export const page_data: Record<string, PageData> = {}
 
 
 // Directories
