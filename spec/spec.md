@@ -86,9 +86,10 @@ This is done by `build-2-step.ts` file.
   * Repeats for each required web-component:
     * Parse the component.
       Extracts `<template>`, `<style>`, and `<script>` for each component.
-    * Creates a `component.ts` file.
+    * Creates a `component-name.ts` file.
       The content, set to the content from the <script>, tag from the web-component `.html` definition file.
-      This is an initial simple implementation. That will be improved in the future.
+      (Copying the script content, is an initial, simple implementation.
+      It may be improved in the future).
     * Writes web-component templates, at the top of page body.
     * Injects `<script src="component-name.ts" type="module">` for each web-component.
       In the body, right after the templates.
@@ -139,14 +140,16 @@ This is the web-component file format:
 <template mode="closed">
   <div><slot></slot></div>
 </template>
-<style>
-  div { background-color: blue;  }
-</style>
+
 <script>
   // Create the component here
   // ...
-  this.addEventListener('click', () => console.log('Clicked!'));
+
 </script>
+
+<style>
+  div { background-color: blue;  }
+</style>
 ```
 
 ## Usage API

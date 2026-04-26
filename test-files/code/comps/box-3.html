@@ -1,23 +1,44 @@
 <template mode="closed">
-  <div class="box"><slot></slot></div>
+  <div class="box">
+    <slot></slot>
+  </div>
 </template>
+
+<script>
+
+  class Box3 extends HTMLElement {
+    constructor() {
+      // Always call super first in constructor (?)
+      super();
+
+      this.addEventListener('click', () => console.log('box-3 Clicked!'));
+    }
+    // Element functionality written in here
+  }
+
+  customElements.define("box-3", Box3);
+
+  const shadowRoot = this.attachShadow({ mode: "closed" });
+  let template = document.getElementById("box-3").content;
+  shadowRoot.appendChild(template.cloneNode(true));
+
+</script>
+
 <style>
   .box {
-      background-color: #caffbf; /* pastel green */
-      color: #444444;
-      font-weight: 800;
-      padding: 1.5rem;
-      border-radius: 8px;
-      height: 100%;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      gap: 0.5rem;
+    background-color: #caffbf;
+    /* pastel green */
+    color: #444444;
+    font-weight: 800;
+    padding: 1.5rem;
+    border-radius: 8px;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 0.5rem;
   }
 </style>
-<script>
-  this.addEventListener('click', () => console.log('box-3 Clicked!'));
-</script>

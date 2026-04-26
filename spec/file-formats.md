@@ -20,20 +20,24 @@ Comps dir may have sub-dirs, but its hierarchy is meaningless. Names must be uni
 </style>
 
 <script>
-    // This is copied into the script file.
-    customElements.define(
-      "comp-card",
-      class extends HTMLElement {
-        constructor() {
-          super();
-          let template = document.getElementById("comp-card");
-          let templateContent = template.content;
+    //
+    // This is copied into the component script file.
+    //
 
-          const shadowRoot = this.attachShadow({ mode: "closed" });
-          shadowRoot.appendChild(templateContent.cloneNode(true));
+    class CompCard extends HTMLElement {
+        constructor() {
+            // Always call super first in constructor (?)
+            super();
         }
-      },
-    );
+        // Element functionality written in here
+    }
+    
+    customElements.define("comp-card", CompCard);
+    
+    const shadowRoot = this.attachShadow({ mode: "closed" });
+    let template = document.getElementById("comp-card").content;
+    shadowRoot.appendChild(template.cloneNode(true));
+
 </script>
 ```
 
