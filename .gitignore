@@ -2,4 +2,5 @@
 deno.lock
 
 # Test files
-test/file-test/dist/
+test-files/dist/
+test-files/step/
