@@ -3,7 +3,7 @@
 // Data storage for kyanite
 
 
-import { ComponentData, PageData } from "./object.ts"
+import { ComponentData, Config, PageData } from "./object.ts"
 
 
 // Storage for component data
@@ -16,12 +16,18 @@ export const page_data: Record<string, PageData> = {}
 
 // Directories
 export let dir = {
-    code: "/code",
-    dist: "/dist",
-    step: "/step", // this is an intermediate step dir.
+    project: ".",
+    code: "code",
+    dist: "dist",
+    step: "step", // this is an intermediate step dir.
 
     // dir inside of code dir
     comps: "comps",
+}
+
+export let config: Config = {
+    pages: [],
+    dir: dir,
 }
 
 

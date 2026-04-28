@@ -22,3 +22,12 @@ Includes these steps:
 
 * These steps should be split in separated functions.
 For a simpler, easier-to-read, and testable code.
+
+**Done**
+
+## Test
+Add tests for build setup.
+Various fixes required, for all tests.
+
+**Done**
+

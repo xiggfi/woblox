@@ -123,9 +123,9 @@ Modyfying them is also possible.
 
 ```text
 my-project/
+|── kyanite-config.json    # config
 ├── code/
 │   |── index.html    # A page template
-│   |── kyanite-config.json    # config
 |   └── comps/        # Component fragments
 |       ├── nav-bar.html
 |       └── user-card.html

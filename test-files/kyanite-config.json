@@ -1,0 +1,12 @@
+{
+  "pages": [
+    "test-page.html"
+  ],
+  "dir": {
+    "project": "test-files",
+    "code": "code",
+    "step": "step",
+    "dist": "dist",
+    "comps": "comps"
+  }
+}

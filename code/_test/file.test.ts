@@ -1,28 +1,15 @@
 
 import { assert, assertEquals } from "jsr:@std/assert";
 import { get_file_timestamp, copy_newer } from "../file/file-time.ts";
+import { setup_test_project } from "./test-setup.ts";
 
 
 
 //
-// before all, clear content of test-files/step and test-files/dist
+// Do test-project setup
 //
 Deno.test.beforeAll(async () => {
-
-    // Delete all content of test-files/step and test-files/dist
-    try {
-        await Deno.remove("test-files/step", { recursive: true });
-        await Deno.remove("test-files/dist", { recursive: true });
-    } catch (error) {
-        if (error instanceof Deno.errors.NotFound) {
-            // Directory doesn't exist, which is fine
-            return;
-        }
-        throw error; // Re-throw other errors
-    }
-
-    await Deno.mkdir("test-files/step");
-    await Deno.mkdir("test-files/dist");
+    await setup_test_project();
 });
 
 
@@ -46,14 +33,19 @@ Deno.test("get_file_timestamp", async () => {
 // To verify that it copies only newer files.
 //
 Deno.test("copy_newer", async () => {
+
+    // Perform copy
     await copy_newer("test-files/code", "test-files/step", { files: [], dirs: [] });
+    await copy_newer("test-files/code", "test-files/dist", { files: [], dirs: [] });
 
-    // assert that step/test-file.txt exists
-    assert(await Deno.stat("test-files/step/test-file.txt"));
+    // assert that new copies were created
+    const [code_timestamp, step_timestamp, dist_timestamp] = await Promise.all([
+        get_file_timestamp("test-files/code/test-file.txt"),
+        get_file_timestamp("test-files/step/test-file.txt"),
+        get_file_timestamp("test-files/dist/test-file.txt"),
+    ]);
 
-    // assert that is newer than the original
-    let step_timestamp = await get_file_timestamp("test-files/step/test-file.txt");
-    let code_timestamp = await get_file_timestamp("test-files/code/test-file.txt");
     assert(step_timestamp > code_timestamp);
+    assert(dist_timestamp > code_timestamp);
 
 })
