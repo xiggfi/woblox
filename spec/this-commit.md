@@ -5,29 +5,20 @@ Work described here, usually cover 1 commit.
 In some cases, it may extend over multiple commits.
 
 
-## Implement build setup
+## Implement build-2-step
 
 As described in spec.md
-File `build-1-setup.ts`
+File `build-2-step.ts`
 Includes these steps:
 
-* Read config file
-* Read page timestamps
-* Scan comp dir
-* Read web-component timestamps
+* Determine required components for the page.
+* Check page timestamps. To determine if the page needs a build.
+  If not, skip the page.
+* Check component timestamps. To determine if the components
+  need a build.
+  If not, skip the component.
+* Generate the component scripts files. In `step` dir.
+* Generate the page file. In `step` dir.
 
-**Done**
-
-## Refinements
-
-* These steps should be split in separated functions.
-For a simpler, easier-to-read, and testable code.
-
-**Done**
-
-## Test
-Add tests for build setup.
-Various fixes required, for all tests.
-
-**Done**
+[ ] Done
 

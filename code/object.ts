@@ -9,7 +9,6 @@
 export interface ComponentData {
     tag_name: string    // e.g., "nav-bar"
     file_path: string  // including the full filename
-    build: boolean     // true if the component has been modified and needs re-build
     source_file_time: number  // timestamp
     step_build_time: number     // timestamp
     dist_build_time: number     // timestamp

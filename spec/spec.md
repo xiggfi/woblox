@@ -31,10 +31,16 @@ The build process, will be used repeatedly, during dev. So it must be fast and e
 Kyanite uses files timestamps.
 To build only things that have been modified.
 
-The user must create a `pages.json` on the `code` dir.
-A list of all pages that use Kyanite components.
-This is for the `copy_files` API op, to not copy these pages.
-And for the build process. When building all pages.
+The user must create a `kyanite-config.json` on the `code` dir.
+This file contains:
+- The page list, that are using kyanite components.
+- Optional: The build directories.
+See `config-spec.md` for more details.
+
+When building, the user may pass a list of pages to build.
+If none is passed, all pages from the config file are built.
+(Only the ones that have been modified).
+(web-component that has been modified, must be rebuilt).
 
 
 ### Build Setup (1)
@@ -73,20 +79,23 @@ Involves reading file data, and storing it in state variables.
 
 
 ### Step Build (2)
-The following steps are performed for each specific page to build.
 This is done by `build-2-step.ts` file.
+This file builds the intermediate step, for a single, specified page.
+The following steps are performed:
 
 * **Determine required components**:
   In the target web-page.
 
-* **Check build dates**:
+* **Check page build date**:
+  Determine if the page needs to be rebuilt.
+  Compare the page timestamps.
+
+* **Check component build dates**:
   Determine which web-components needs to be rebuilt.
   Compare the web-component timestamps:
       * The `code` dir, `.html` file timestamp.
       * The `step` dir, `.ts` script timestamp.
   If the script file is newer, than code html file, no need to rebuild the web-component script.
-      -> Set `component_data` `built` property, to true.
-      To indicate that build process, for this web-component` is done.
 
 * **Generation (intermediate step):** 
   * Reads the source page html, into a string. To operate on it.
@@ -97,6 +106,8 @@ This is done by `build-2-step.ts` file.
       The content, set to the content from the <script>, tag from the web-component `.html` definition file.
       (Copying the script content, is an initial, simple implementation.
       It may be improved in the future).
+    * Update the component "step" timestamp, to not re-build it.
+      (When building multiple pages).
     * Writes web-component templates, at the top of page body.
     * Injects `<script src="component-name.ts" type="module">` for each web-component.
       In the body, right after the templates.
