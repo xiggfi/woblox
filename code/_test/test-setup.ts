@@ -9,35 +9,33 @@ import { load_config } from "../setup.ts";
 
 
 
-// State var to determine if setup has been done.
-let setup_done = false;
+// State var to hold the promise of the setup operation.
+// This ensures that if multiple test files call setup concurrently,
+// they all wait for the single setup operation to complete.
+let setup_promise: Promise<void> | null = null;
 
+export function setup_test_project(): Promise<void> {
+    if (setup_promise) return setup_promise;
 
-
-export async function setup_test_project() {
-
-    if (setup_done) return;
-
-    setup_done = true;
-
-    // Delete all content of test-files/step and test-files/dist
-    try {
-        await Deno.remove("test-files/step", { recursive: true });
-        await Deno.remove("test-files/dist", { recursive: true });
-    } catch (error) {
-        if (error instanceof Deno.errors.NotFound) {
-            // Directory doesn't exist, which is fine
-            return;
+    setup_promise = (async () => {
+        // Delete all content of test-files/step and test-files/dist
+        try {
+            await Deno.remove("test-files/step", { recursive: true });
+            await Deno.remove("test-files/dist", { recursive: true });
+        } catch (error) {
+            if (!(error instanceof Deno.errors.NotFound)) {
+                throw error; // Re-throw other errors
+            }
         }
-        throw error; // Re-throw other errors
-    }
 
-    // recreate the dirs
-    await Deno.mkdir(`test-files/${dir.step}`);
-    await Deno.mkdir(`test-files/${dir.dist}`);
+        // recreate the dirs
+        await Deno.mkdir(`test-files/${dir.step}`);
+        await Deno.mkdir(`test-files/${dir.dist}`);
 
+        await load_config("test-files");
 
-    await load_config("test-files");
+        await build_setup();
+    })();
 
-    await build_setup();
+    return setup_promise;
 }

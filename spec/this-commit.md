@@ -42,3 +42,10 @@ Remember to run the test-setup, (as done in other test files),
 required to prepare the test environment.
 
 [x] Done
+
+
+## Verify test-setup.ts
+This should be run once. For various tests files.
+Is this correctly implemented?
+
+[x] Done
