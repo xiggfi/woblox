@@ -27,24 +27,24 @@ Component files are of the form:
 
 
 */
-import { component_data } from "./data.ts"
+import { component_data } from "./state.ts"
 import { ComponentData } from "./object.ts"
 
 
 
 // parses and compiles all web-components
 export function compile_components() {
-  
+
 }
 
 
 function parse_component(tag_name: string, raw_html: string) {
-    // Simple Regex Extractors (more robust than DOMParser for build-time)
-    const template = raw_html.match(/<template>([\s\S]*?)<\/template>/)?.[1] || "";
-    const style = raw_html.match(/<style>([\s\S]*?)<\/style>/)?.[1] || "";
-    const script = raw_html.match(/<script>([\s\S]*?)<\/script>/)?.[1] || "";
+  // Simple Regex Extractors (more robust than DOMParser for build-time)
+  const template = raw_html.match(/<template>([\s\S]*?)<\/template>/)?.[1] || "";
+  const style = raw_html.match(/<style>([\s\S]*?)<\/style>/)?.[1] || "";
+  const script = raw_html.match(/<script>([\s\S]*?)<\/script>/)?.[1] || "";
 
-    // Insert data into component_data
-    // ...
+  // Insert data into component_data
+  // ...
 
 }

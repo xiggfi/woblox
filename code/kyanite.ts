@@ -9,7 +9,7 @@
 
 
 import * as core from "./core.ts"
-import { dir, page, page_list } from "./data.ts"
+import { dir, page, page_list } from "./state.ts"
 
 
 

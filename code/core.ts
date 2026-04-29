@@ -3,10 +3,10 @@
 // Implementation of the framework operations.
 // export functions here are called by the public API.
 //
-import { component_list } from "./data.ts"
+import { component_list } from "./state.ts"
 import { load_file } from "./file.ts"
 import { parse_component } from "./parse.ts"
-import { dir, page, page_list } from "./data.ts"
+import { dir, page, page_list } from "./state.ts"
 import { copy_newer } from "./util/file-util.ts";
 
 

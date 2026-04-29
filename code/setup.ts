@@ -3,7 +3,7 @@
 // Setup functions
 
 import { load_file } from "./file/file.ts";
-import { config, page_data } from "./data.ts";
+import { config, page_data } from "./state.ts";
 
 //
 // Reads config file

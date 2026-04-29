@@ -6,7 +6,7 @@
 
 
 
-import { component_data } from "./data.ts"
+import { component_data } from "./state.ts"
 
 
 
