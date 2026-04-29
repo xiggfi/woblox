@@ -9,6 +9,9 @@ In some cases, it may extend over multiple commits.
 
 As described in spec.md
 File `build-2-step.ts`
+Implementation should split the main steps, in multiple functions.
+For better readability.
+
 Includes these steps:
 
 * Determine required components for the page.
@@ -20,5 +23,5 @@ Includes these steps:
 * Generate the component scripts files. In `step` dir.
 * Generate the page file. In `step` dir.
 
-[ ] Done
+[x] Done
 
