@@ -3,7 +3,7 @@
 // Does one-time test setup operations
 //
 
-import { dir } from "../data.ts";
+import { dir } from "../state.ts";
 import { build_setup } from "../build/build-1-setup.ts";
 import { load_config } from "../setup.ts";
 
@@ -18,6 +18,8 @@ export async function setup_test_project() {
 
     if (setup_done) return;
 
+    setup_done = true;
+
     // Delete all content of test-files/step and test-files/dist
     try {
         await Deno.remove("test-files/step", { recursive: true });
@@ -31,13 +33,11 @@ export async function setup_test_project() {
     }
 
     // recreate the dirs
-    await Deno.mkdir("test-files/step");
-    await Deno.mkdir("test-files/dist");
+    await Deno.mkdir(`test-files/${dir.step}`);
+    await Deno.mkdir(`test-files/${dir.dist}`);
 
 
     await load_config("test-files");
 
     await build_setup();
-
-    setup_done = true;
 }

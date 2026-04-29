@@ -27,7 +27,6 @@ export async function scan_components(path: string) {
             component_data[tagName] = {
                 tag_name: tagName,
                 file_path: fullPath,
-                build: false,
                 source_file_time: 0,
                 step_build_time: 0,
                 dist_build_time: 0

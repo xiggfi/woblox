@@ -1,8 +1,6 @@
 import { assert, assertEquals, assertExists } from "jsr:@std/assert";
-import { dir, page_data, component_data } from "../../data.ts";
-import { build_setup } from "../../build/build-1-setup.ts";
+import { page_data, component_data } from "../../state.ts";
 import { setup_test_project } from "../test-setup.ts";
-
 
 
 //

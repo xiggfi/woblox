@@ -4,7 +4,7 @@
 //
 
 import { Config } from "../object.ts";
-import { config, page_data, component_data } from "../data.ts";
+import { config, page_data, component_data } from "../state.ts";
 import { load_file } from "../file/file.ts";
 import { scan_components } from "../components.ts";
 import { get_file_timestamp } from "../file/file-time.ts";
