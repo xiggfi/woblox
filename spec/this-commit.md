@@ -25,3 +25,20 @@ Includes these steps:
 
 [x] Done
 
+
+## Implement tests for build-2-step
+File `tests/build/test-build-2-step.ts`
+
+The test should generate the test-project, "step" files.
+In `test-files` dir.
+
+Should generate the page, and components files.
+And leave them there. For the user to inspect.
+
+Should consist of multiple, easy to read Deno tests.
+Separated according to task scopes.
+
+Remember to run the test-setup, (as done in other test files),
+required to prepare the test environment.
+
+[x] Done
