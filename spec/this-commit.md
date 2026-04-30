@@ -5,47 +5,19 @@ Work described here, usually cover 1 commit.
 In some cases, it may extend over multiple commits.
 
 
-## Implement build-2-step
+## Change: Dir strcuture: No minification step
 
-As described in spec.md
-File `build-2-step.ts`
-Implementation should split the main steps, in multiple functions.
-For better readability.
+Decided that this project will not handle page minification.
+Updated spec files, `spec.md` and `config-spec.md`.
+With the new directory structure. And no minification step.
 
-Includes these steps:
+Need to update the whole project, according to that.
 
-* Determine required components for the page.
-* Check page timestamps. To determine if the page needs a build.
-  If not, skip the page.
-* Check component timestamps. To determine if the components
-  need a build.
-  If not, skip the component.
-* Generate the component scripts files. In `step` dir.
-* Generate the page file. In `step` dir.
+Minification is currently not implemented. So no need to remove stuff.
 
-[x] Done
+What needs to be updated, is the files that deal with directory structure.
+As the config dirs have been modified.
+Which are almost all of the code files.
 
-
-## Implement tests for build-2-step
-File `tests/build/test-build-2-step.ts`
-
-The test should generate the test-project, "step" files.
-In `test-files` dir.
-
-Should generate the page, and components files.
-And leave them there. For the user to inspect.
-
-Should consist of multiple, easy to read Deno tests.
-Separated according to task scopes.
-
-Remember to run the test-setup, (as done in other test files),
-required to prepare the test environment.
-
-[x] Done
-
-
-## Verify test-setup.ts
-This should be run once. For various tests files.
-Is this correctly implemented?
-
-[x] Done
+[x] Spec files
+[x] Code files

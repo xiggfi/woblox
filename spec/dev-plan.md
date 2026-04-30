@@ -14,14 +14,21 @@ Next steps
 ## 1 Create a test project
 A minimal test project, in `/test-files` dir.
 This will be used by project test code.
-**Done**
+[x] Done
 
 ## 2 Implement build setup
 File `build-1-setup.ts`
+[x] Done
 
 ## 3 Implement build step
 File `build-2-step.ts`
+[x] Done
 
-## 4 Implement build dist
-File `build-3-dist.ts`
+## 4 Implement user API
+File `kyanite.ts`
+[ ] Done
+
+## 5 Refinements and fixes
+[ ] Done
+
 

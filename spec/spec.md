@@ -8,8 +8,9 @@ Using Deno and Native Web Components.
 
 ## Core Concept
 Kyanite is a **Build-Time Framework**.
-It transforms a directory of `.html` components and a "Page" template into a single, optimized distribution folder.
-It avoids a heavy runtime library by leveraging native Browser **Custom Elements**.
+It transforms a directory of `.html` components and a "Page" template,
+from an efficient format. Into an html compatible set of files.
+It avoids a heavy runtime library, by leveraging native Browser **Custom Elements**.
 
 
 ## Tech Stack
@@ -19,10 +20,9 @@ It avoids a heavy runtime library by leveraging native Browser **Custom Elements
 
 
 ## Compilation Pipeline (The "Build")
-Kyanite provides users two build steps, for a specific page:
-* **step** - Intermediate step. Builds the page in `step/` directory.
+Kyanite provides users a build steps, for a specific page:
+* **step** - Builds the page in `step/` directory.
     With compiled web-components, their templates and scripts.
-* **dist** - Minifies the previous page, into `dist/` directory.
 
 The user may want to run one specific step, or both.
 
@@ -57,17 +57,14 @@ Involves reading file data, and storing it in state variables.
   Reads the timestamps of the page `.html` files.
   Only for the user specified pages, that are going to be built.
   
-  There are 4 timestamps to read for each page.
+  There are 2 timestamps to read for each page.
   (Some files may not be there yet, so timestamp will be 0):
-      * Page `code` file
-      * Page `step` file
-      * Page `dist` file
-      * Page `dist` script file.
+      * Page `src` file
+      * Page `build` file
       
-  If the "step" is newer than source, no need to re-build. -> "Step" Build process done.
-  If the "dist" is newer than source, no need to re-build. -> "Dist" Build process done.
+  If the "build" is newer than source, no need to re-build. -> "build" process done.
   
-  Store the 4 timestamps on `page_data` state var.
+  Store the 2 timestamps on `page_data` state var.
 
 * **Scan web-components directory:**
   Scans the "comps" directory, from "code" dir.
@@ -78,9 +75,9 @@ Involves reading file data, and storing it in state variables.
   * Store it on `component_data` state var.
 
 
-### Step Build (2)
+### Build (2)
 This is done by `build-2-step.ts` file.
-This file builds the intermediate step, for a single, specified page.
+This file builds the final step, for a single, specified page.
 The following steps are performed:
 
 * **Determine required components**:
@@ -93,8 +90,8 @@ The following steps are performed:
 * **Check component build dates**:
   Determine which web-components needs to be rebuilt.
   Compare the web-component timestamps:
-      * The `code` dir, `.html` file timestamp.
-      * The `step` dir, `.ts` script timestamp.
+      * The `src` dir, `.html` file timestamp.
+      * The `build` dir, `.ts` script timestamp.
   If the script file is newer, than code html file, no need to rebuild the web-component script.
 
 * **Generation (intermediate step):** 
@@ -102,30 +99,16 @@ The following steps are performed:
   * Repeats for each required web-component:
     * Parse the component.
       Extracts `<template>`, `<style>`, and `<script>` for each component.
-    * Creates a `component-name.ts` file.
-      The content, set to the content from the <script>, tag from the web-component `.html` definition file.
+    * Creates a `component-name.ts` file. In target `build/comps/` dir.
+      The content, set to the content from the `<script>`, tag from the web-component `.html` definition file.
       (Copying the script content, is an initial, simple implementation.
       It may be improved in the future).
-    * Update the component "step" timestamp, to not re-build it.
+    * Update the component "build" timestamp, to not re-build it.
       (When building multiple pages).
     * Writes web-component templates, at the top of page body.
     * Injects `<script src="component-name.ts" type="module">` for each web-component.
       In the body, right after the templates.
-  * Writes the modified page string, to `step/` dir, as the web-page `.html` file.
-
-
-### Dist build (minification) (3)
-For the "Dist" build, the Kyanite Compiler performs the following steps:
-This is done by `build-3-dist.ts` file.
-
-* **Step Build**
-  Perform the "Step" build. (if it has not been done in this run).
-  To ensure the "Step" build, is up-to-date, to source files.
-  
-* **Minification**
-  Generates a distributable minified page bundle, from the intermediate step.
-  Using `deno bundle` command.
-  Put on `dist/` dir.
+  * Writes the modified page string, to `build/` dir, as the web-page `.html` file.
 
 
 ## Directory Structure
@@ -135,7 +118,7 @@ Modyfying them is also possible.
 ```text
 my-project/
 |── kyanite-config.json    # config
-├── code/
+├── src/                  # Source code directory
 │   |── index.html    # A page template
 |   └── comps/        # Component fragments
 |       ├── nav-bar.html
@@ -143,8 +126,7 @@ my-project/
 ├── build/            # The user build scripts
 │   |── build.ts      # User build script, using Kyanite API
 |   └── build-2.ts    # Another build script, using Kyanite API
-├── step/             # Generated "Step" output (The "Compiled" page)
-└── dist/             # Generated "Dist" output (The "Minified" page)
+└── build-out/        # Generated build output
 ```
 
 

@@ -10,22 +10,9 @@ The config file contains:
  `pages`: Array of page full paths.
   
 * Directories
-  `project`: Container dir for code files.
+  `project`: Container dir for code dirs.
   This is where the other, below dirs will be looked for.
-  `code`: Path to code directory. From project dir.
-  `step`: Step build directory. From project dir.
-  `dist`: Dist build directory. From project dir.
-  `comps`: Path to components directory. From code dir.
-
-
-## Future Renaming
-This structure may be renamed in the future.
-Because all are code dirs.
-Code should probably be the project dir.
-The "project" dir name, should be left for the whole project dir.
-
-Possible rename:
-* Project -> Code
-* Code -> Source
-* Step -> Build
-* Dist -> Dist
+  `src`: Path to source directory. From project dir.
+  `build`: Path to build directory. From project dir.
+  `comps`: Path to components directory. From source dir.
+Do not include slashes, in any of the above.
