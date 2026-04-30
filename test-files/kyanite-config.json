@@ -4,9 +4,8 @@
   ],
   "dir": {
     "project": "test-files",
-    "code": "code",
-    "step": "step",
-    "dist": "dist",
+    "src": "src",
+    "build": "build-out",
     "comps": "comps"
   }
 }
