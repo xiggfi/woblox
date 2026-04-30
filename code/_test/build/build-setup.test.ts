@@ -23,9 +23,7 @@ Deno.test("Check page_data exists", async () => {
 Deno.test("Check page timestamps", async () => {
     const page = page_data["test-page.html"];
     assert(page.source_file_time > 0);
-    assertEquals(page.step_build_time, 0);
-    assertEquals(page.dist_build_time, 0);
-    //assertEquals(page.dist_script_time, 0); the script structure has not been clarified yet
+    assertEquals(page.build_time, 0);
 })
 
 
@@ -42,7 +40,7 @@ Deno.test("Check component data", async () => {
 
     const box1 = component_data["box-1"];
     assertEquals(box1.tag_name, "box-1");
-    assertEquals(box1.file_path, "test-files/code/comps/box-1.html");
+    assertEquals(box1.file_path, "test-files/src/comps/box-1.html");
     assert(box1.source_file_time > 0, "Component source file time should be greater than 0");
 })
 

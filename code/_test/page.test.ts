@@ -11,7 +11,7 @@ Deno.test.beforeAll(async () => {
 });
 
 Deno.test("get_components detects unique hyphenated tags", async () => {
-  const test_file = "test-files/code/test-page.html";
+  const test_file = "test-files/src/test-page.html";
 
   try {
     const components = await get_components(test_file);

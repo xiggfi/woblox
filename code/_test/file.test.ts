@@ -17,7 +17,7 @@ Deno.test.beforeAll(async () => {
 // Test get_file_timestamp
 //
 Deno.test("get_file_timestamp", async () => {
-    let timestamp = await get_file_timestamp("test-files/code/test-file.txt");
+    let timestamp = await get_file_timestamp("test-files/src/test-file.txt");
     assert(timestamp > 0);
 
     let date_string = new Date(timestamp).toDateString();
@@ -35,17 +35,14 @@ Deno.test("get_file_timestamp", async () => {
 Deno.test("copy_newer", async () => {
 
     // Perform copy
-    await copy_newer("test-files/code", "test-files/step", { files: [], dirs: [] });
-    await copy_newer("test-files/code", "test-files/dist", { files: [], dirs: [] });
+    await copy_newer("test-files/src", "test-files/build-out", { files: [], dirs: [] });
 
     // assert that new copies were created
-    const [code_timestamp, step_timestamp, dist_timestamp] = await Promise.all([
-        get_file_timestamp("test-files/code/test-file.txt"),
-        get_file_timestamp("test-files/step/test-file.txt"),
-        get_file_timestamp("test-files/dist/test-file.txt"),
+    const [src_timestamp, build_timestamp] = await Promise.all([
+        get_file_timestamp("test-files/src/test-file.txt"),
+        get_file_timestamp("test-files/build-out/test-file.txt"),
     ]);
 
-    assert(step_timestamp > code_timestamp);
-    assert(dist_timestamp > code_timestamp);
+    assert(build_timestamp > src_timestamp);
 
 })

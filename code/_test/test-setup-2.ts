@@ -4,7 +4,7 @@
 //
 
 import { dir } from "../state.ts";
-import { build_setup } from "../build/build-1-setup.ts";
+import { build_setup } from "../build/build-setup.ts";
 import { load_config } from "../setup.ts";
 
 // This is an experimental, alternative implementation.
@@ -23,10 +23,9 @@ export function setup_test_project(): Promise<void> {
 
     return (async () => {
         if (!Deno.env.get("KYANITE_SETUP_FS_CLEANUP_DONE")) {
-            // Delete all content of test-files/step and test-files/dist
+            // Delete all content of test-files/build-out
             try {
-                await Deno.remove("test-files/step", { recursive: true });
-                await Deno.remove("test-files/dist", { recursive: true });
+                await Deno.remove("test-files/build-out", { recursive: true });
             } catch (error) {
                 if (!(error instanceof Deno.errors.NotFound)) {
                     throw error;
@@ -34,8 +33,7 @@ export function setup_test_project(): Promise<void> {
             }
 
             // Recreate the dirs.
-            await Deno.mkdir("test-files/step");
-            await Deno.mkdir("test-files/dist");
+            await Deno.mkdir("test-files/build-out");
 
             Deno.env.set("KYANITE_SETUP_FS_CLEANUP_DONE", "true");
         }
