@@ -28,8 +28,7 @@ export async function scan_components(path: string) {
                 tag_name: tagName,
                 file_path: fullPath,
                 source_file_time: 0,
-                step_build_time: 0,
-                dist_build_time: 0
+                build_time: 0
             };
         }
     }

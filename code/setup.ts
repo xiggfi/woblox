@@ -25,10 +25,9 @@ export async function load_config(path?: string) {
 
     // get dirs
     if (config_json.dir) {
-        config.dir.code = `${project_dir}/${config_json.dir.code}`;
-        config.dir.step = `${project_dir}/${config_json.dir.step}`;
-        config.dir.dist = `${project_dir}/${config_json.dir.dist}`;
-        config.dir.comps = `${config.dir.code}/${config_json.dir.comps}`;
+        config.dir.src = `${project_dir}/${config_json.dir.src}`;
+        config.dir.build = `${project_dir}/${config_json.dir.build}`;
+        config.dir.comps = `${config.dir.src}/${config_json.dir.comps}`;
     }
 
     // get pages
@@ -38,9 +37,7 @@ export async function load_config(path?: string) {
             page_data[page] = {
                 file_path: page,
                 source_file_time: -1,
-                step_build_time: -1,
-                dist_build_time: -1,
-                dist_script_time: -1,
+                build_time: -1,
             };
         }
     }

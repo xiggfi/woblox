@@ -17,11 +17,10 @@ export const page_data: Record<string, PageData> = {}
 // Directories
 export let dir = {
     project: ".",
-    code: "code",
-    dist: "dist",
-    step: "step", // this is an intermediate step dir.
+    src: "src",
+    build: "build",
 
-    // dir inside of code dir
+    // dir inside of src dir
     comps: "comps",
 }
 

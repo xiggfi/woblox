@@ -23,8 +23,8 @@ function load_components(dir: string) {
 // Copies all files outside of components dir.
 export async function copy_files() {
 
-    const src = dir.code
-    const dest = dir.step
+    const src = dir.src
+    const dest = dir.build
 
     try {
         console.log("Syncing assets...");
@@ -42,28 +42,16 @@ export async function copy_files() {
 
 
 
-// Build both stpes.
+// Build the pages.
 // Without parameter, builds all pages.
 export function build(pages?: string[]) {
-    build_step(pages)
-    build_dist(pages)
+    build_page(pages)
 }
 
 
-// This builds the intermediate step pages.
+// This builds the pages.
 // Without parameter, builds all pages.
-export function build_step(pages?: string[]) {
-    rebuild_components()
-
-    // ...
-}
-
-
-
-// This builds the final step pages. Minified.
-// Uses current intermediate step build, as source.
-// Without parameter, builds all pages.
-export function build_dist(pages?: string[]) {
+export function build_page(pages?: string[]) {
     rebuild_components()
 
     // ...

@@ -24,10 +24,8 @@ async function read_page_timestamps() {
     for (const pageName of config.pages) {
         page_data[pageName] = {
             file_path: pageName,
-            source_file_time: await get_file_timestamp(`${config.dir.code}/${pageName}`),
-            step_build_time: await get_file_timestamp(`${config.dir.step}/${pageName}`),
-            dist_build_time: await get_file_timestamp(`${config.dir.dist}/${pageName}`),
-            dist_script_time: await get_file_timestamp(`${config.dir.dist}/${pageName.replace(/\.html$/, '.js')}`)
+            source_file_time: await get_file_timestamp(`${config.dir.src}/${pageName}`),
+            build_time: await get_file_timestamp(`${config.dir.build}/${pageName}`)
         };
     }
 }
@@ -40,6 +38,6 @@ async function read_web_component_timestamps() {
     for (const tagName in component_data) {
         const comp = component_data[tagName];
         comp.source_file_time = await get_file_timestamp(comp.file_path);
-        comp.step_build_time = await get_file_timestamp(`${config.dir.step}/${tagName}.ts`);
+        comp.build_time = await get_file_timestamp(`${config.dir.build}/comps/${tagName}.ts`);
     }
 }

@@ -10,14 +10,14 @@ import { config, page_data, component_data } from "../state.ts";
 import { load_file, write_file } from "../file/file.ts";
 import { get_components } from "../page.ts";
 
-export async function build_step() {
+export async function build_page() {
     for (const pageName of config.pages) {
         await process_page(pageName);
     }
 }
 
 async function process_page(pageName: string) {
-    const pagePath = `${config.dir.code}/${pageName}`;
+    const pagePath = `${config.dir.src}/${pageName}`;
     
     // Determine required components for the page.
     const requiredComponents = await get_required_components(pagePath);
@@ -39,7 +39,7 @@ async function process_page(pageName: string) {
         }
     }
 
-    // Generate the page file. In `step` dir.
+    // Generate the page file. In `build` dir.
     await generate_page_file(pageName, pageHtml, injectedHtml);
 }
 
@@ -51,15 +51,15 @@ async function check_if_page_needs_build(pageName: string, requiredComponents: s
     const pageData = page_data[pageName];
     if (!pageData) return true; // Safety fallback
 
-    // If the page source is newer than its step build, it needs a build
-    if (pageData.source_file_time > pageData.step_build_time) {
+    // If the page source is newer than its build, it needs a build
+    if (pageData.source_file_time > pageData.build_time) {
         return true;
     }
 
-    // If any required component is newer than the page's step build, the page needs a build
+    // If any required component is newer than the page's build, the page needs a build
     for (const tagName of requiredComponents) {
         const comp = component_data[tagName];
-        if (comp && comp.source_file_time > pageData.step_build_time) {
+        if (comp && comp.source_file_time > pageData.build_time) {
             return true;
         }
     }
@@ -77,10 +77,10 @@ async function process_component(tagName: string): Promise<string | null> {
     const parts = parse_component(rawHtml);
 
     if (needsBuild) {
-        // Generate the component scripts files. In `step` dir.
+        // Generate the component scripts files. In `build/comps` dir.
         await generate_component_script(tagName, parts.script);
-        // Update the component "step" timestamp
-        comp.step_build_time = Date.now();
+        // Update the component "build" timestamp
+        comp.build_time = Date.now();
     }
 
     // Prepare the HTML to inject into the page
@@ -90,7 +90,7 @@ async function process_component(tagName: string): Promise<string | null> {
 function check_if_component_needs_build(tagName: string): boolean {
     const comp = component_data[tagName];
     if (!comp) return false;
-    return comp.source_file_time > comp.step_build_time;
+    return comp.source_file_time > comp.build_time;
 }
 
 interface ParsedComponent {
@@ -115,8 +115,8 @@ function parse_component(raw_html: string): ParsedComponent {
 }
 
 async function generate_component_script(tagName: string, scriptContent: string) {
-    const stepPath = `${config.dir.step}/${tagName}.ts`;
-    await write_file(stepPath, scriptContent.trim() + "\n");
+    const buildPath = `${config.dir.build}/comps/${tagName}.ts`;
+    await write_file(buildPath, scriptContent.trim() + "\n");
 }
 
 function format_component_injection(tagName: string, templateAttrs: string, template: string, style: string): string {
@@ -126,7 +126,7 @@ function format_component_injection(tagName: string, templateAttrs: string, temp
         html += `<style>\n${style.trim()}\n</style>\n`;
     }
     html += `${template.trim()}\n</template>\n`;
-    html += `<script src="${tagName}.ts" type="module"></script>`;
+    html += `<script src="comps/${tagName}.ts" type="module"></script>`;
     return html;
 }
 
@@ -141,11 +141,11 @@ async function generate_page_file(pageName: string, pageHtml: string, injectedHt
         newPageHtml = injectedHtml + '\n' + pageHtml;
     }
 
-    const stepPath = `${config.dir.step}/${pageName}`;
-    await write_file(stepPath, newPageHtml);
+    const buildPath = `${config.dir.build}/${pageName}`;
+    await write_file(buildPath, newPageHtml);
     
-    // Update page step build time
+    // Update page build time
     if (page_data[pageName]) {
-        page_data[pageName].step_build_time = Date.now();
+        page_data[pageName].build_time = Date.now();
     }
 }

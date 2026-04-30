@@ -34,21 +34,6 @@ export const kyanite = {
 
     },
 
-    // Builds only the intermediate step.
-    // Without parameter, builds all pages.
-    // If a list is provided, builds only these pages.
-    build_step: (pages?: string[]) => {
-
-    },
-
-    // Builds only the final step.
-    // (Uses intermediate-step build, as source)
-    // Without parameter, builds all pages.
-    // If a list is provided, builds only these pages.
-    build_dist: (pages?: string[]) => {
-
-    },
-
     // Copies all files. Into both destination dirs.
     // This is done when the user decides.
     // The user MUST set `pages.json` file, to list
