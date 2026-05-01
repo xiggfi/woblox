@@ -7,6 +7,8 @@ import { component_data, dir, config, page_data } from "./state.ts"
 import { load_file } from "./file/file.ts"
 import { parse_component } from "./parse.ts"
 import { copy_newer } from "./file/file-time.ts";
+import { build_setup } from "./build/build-setup.ts";
+import { build_page as build_page_impl } from "./build/build-page.ts";
 
 
 
@@ -45,16 +47,15 @@ export async function copy_files() {
 // Build the pages.
 // Without parameter, builds all pages.
 export async function build(pages?: string[]) {
-    await build_page(pages)
+    await build_setup();
+    await build_page(pages);
 }
 
 
 // This builds the pages.
 // Without parameter, builds all pages.
 export async function build_page(pages?: string[]) {
-    await load_components(dir.comps)
-
-    // ...
+    await build_page_impl();
 }
 
 

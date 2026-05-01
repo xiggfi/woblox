@@ -11,5 +11,6 @@ import { kyanite } from "../code/kyanite.ts";
 
 
 
+await kyanite.load_config("test-files");
 await kyanite.build();
 
