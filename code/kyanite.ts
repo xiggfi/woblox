@@ -2,15 +2,14 @@
 //
 // Main kyanite usage API
 //
-// 
 // This file is the user API.
 // It is a clean, simple interface for the user.
 // Work is implemented on `core.ts` module.
 
 
 import * as core from "./core.ts"
-import { dir, page, page_list } from "./state.ts"
-
+import * as setup from "./setup.ts"
+import { Config } from "./object.ts"
 
 
 // Kyanite essential API
@@ -20,35 +19,36 @@ import { dir, page, page_list } from "./state.ts"
 export const kyanite = {
 
 
-    // Sets dirs to use.
-    dirs: (dirs: object) => {
-        for (const dir of dirs) {
-            // ..set dirs
-        }
+    // Sets config values manually.
+    // Alternative way to work, without a config file.
+    set_config: (config: Config) => {
+        setup.set_config(config);
+    },
+
+
+    // Load a kyanite config file from the specified path.
+    load_config: async (path: string) => {
+        await setup.load_config(path);
     },
 
 
     // Without parameter, builds all pages.
     // If a list is provided, builds only these pages.
-    build: (pages?: string[]) => {
-
-    },
-
-    // Copies all files. Into both destination dirs.
-    // This is done when the user decides.
-    // The user MUST set `pages.json` file, to list
-    // all Kyanite build pages. To not copy them.
-    // Failing to do so, will overwrite build pages, with the source.
-    // Web-components, are not copied.
-    copy_web_files: () => {
-
+    build: async (pages?: string[]) => {
+        await core.build(pages);
     },
 
 
-    // Here some extra methods for more detailed operations.
+    // Copies all files that are not pages or web components.
+    // Into both destination dirs (step and dist).
+    copy: async () => {
+        await core.copy_files();
+    },
+
+
+    // Extra methods for more detailed operations.
     advanced: {
         // Methods may be added here in the future, if needed.
     }
 
 }
-

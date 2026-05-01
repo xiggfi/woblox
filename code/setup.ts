@@ -3,6 +3,7 @@
 // Setup functions
 
 import { load_file } from "./file/file.ts";
+import { Config } from "./object.ts";
 import { config, page_data } from "./state.ts";
 
 //
@@ -42,5 +43,23 @@ export async function load_config(path?: string) {
         }
     }
 
+}
+
+
+//
+// Manually sets the config object
+//
+export function set_config(new_config: Config) {
+    config.pages = new_config.pages;
+    config.dir = new_config.dir;
+
+    // Initialize page_data for the provided pages
+    for (const page of new_config.pages) {
+        page_data[page] = {
+            file_path: page,
+            source_file_time: -1,
+            build_time: -1,
+        };
+    }
 }
 

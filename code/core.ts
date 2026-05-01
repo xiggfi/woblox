@@ -3,17 +3,16 @@
 // Implementation of the framework operations.
 // export functions here are called by the public API.
 //
-import { component_list } from "./state.ts"
-import { load_file } from "./file.ts"
+import { component_data, dir, config, page_data } from "./state.ts"
+import { load_file } from "./file/file.ts"
 import { parse_component } from "./parse.ts"
-import { dir, page, page_list } from "./state.ts"
-import { copy_newer } from "./util/file-util.ts";
+import { copy_newer } from "./file/file-time.ts";
 
 
 
-function load_components(dir: string) {
-    for (const component of component_list) {
-        let raw_html = load_file(component_list[component])
+async function load_components(path: string) {
+    for (const component in component_data) {
+        let raw_html = await load_file(component_data[component].file_path)
         parse_component(component, raw_html)
     }
 }
@@ -30,11 +29,12 @@ export async function copy_files() {
         console.log("Syncing assets...");
         // 
         let ignore = {
-            // #todo
+            files: [],
+            dirs: []
         }
         await copy_newer(src, dest, ignore);
         console.log("Sync complete!");
-    } catch (err) {
+    } catch (err: any) {
         console.error("Sync failed:", err.message);
     }
 }
@@ -44,15 +44,15 @@ export async function copy_files() {
 
 // Build the pages.
 // Without parameter, builds all pages.
-export function build(pages?: string[]) {
-    build_page(pages)
+export async function build(pages?: string[]) {
+    await build_page(pages)
 }
 
 
 // This builds the pages.
 // Without parameter, builds all pages.
-export function build_page(pages?: string[]) {
-    rebuild_components()
+export async function build_page(pages?: string[]) {
+    await load_components(dir.comps)
 
     // ...
 }
