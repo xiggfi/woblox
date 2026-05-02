@@ -24,20 +24,20 @@ async function read_page_timestamps() {
     for (const pageName of config.pages) {
         page_data[pageName] = {
             file_path: pageName,
-            source_file_time: await get_file_timestamp(`${config.dir.src}/${pageName}`),
-            build_time: await get_file_timestamp(`${config.dir.build}/${pageName}`)
+            source_file_time: await get_file_timestamp(`${config.dir_src}/${pageName}`),
+            build_time: await get_file_timestamp(`${config.dir_build}/${pageName}`)
         };
     }
 }
 
 async function scan_comp_dir() {
-    await scan_components(config.dir.comps);
+    await scan_components(config.dir_comps);
 }
 
 async function read_web_component_timestamps() {
     for (const tagName in component_data) {
         const comp = component_data[tagName];
         comp.source_file_time = await get_file_timestamp(comp.file_path);
-        comp.build_time = await get_file_timestamp(`${config.dir.build}/comps/${tagName}.ts`);
+        comp.build_time = await get_file_timestamp(`${config.dir_build}/comps/${tagName}.ts`);
     }
 }

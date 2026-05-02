@@ -30,12 +30,12 @@ Deno.test("get_file_timestamp", async () => {
 Deno.test("copy_newer", async () => {
 
     // Perform copy
-    await copy_newer("test-files/src", `${config.dir.build}`, { files: [], dirs: [] });
+    await copy_newer("test-files/src", `${config.dir_build}`, { files: [], dirs: [] });
 
     // assert that new copies were created
     const [src_timestamp, build_timestamp] = await Promise.all([
         get_file_timestamp("test-files/src/test-file.txt"),
-        get_file_timestamp(`${config.dir.build}/test-file.txt`),
+        get_file_timestamp(`${config.dir_build}/test-file.txt`),
     ]);
 
     assert(build_timestamp > src_timestamp);

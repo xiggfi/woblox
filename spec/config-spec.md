@@ -3,16 +3,17 @@
 The confg file is looked by default, in the project root dir.
 In the build script, the user can specify a path to the config file.
 
-The config file contains:
+The config file contains the following data in json format.
+With the specified default values.
+Do not add trailing slashes to dir paths.
 
-* Pages
-  The list of pages that use Woblox components.
- `pages`: Array of page full paths.
-  
-* Directories
-  `project`: Container dir for code dirs.
-  This is where the other, below dirs will be looked for.
-  `src`: Path to source directory. From project dir.
-  `build`: Path to build directory. From project dir.
-  `comps`: Path to components directory. From source dir.
-Do not include slashes, in any of the above.
+{
+  "pages": [],                // Array of page paths. Woblox pages.
+                              // (Path is from src_dir)
+                              // Example: ["home.html", "subdir/page.html"]
+  "src_dir": "src",           // Source dir. From Deno working dir.
+  "build_dir": "build",       // Build dir. From Deno working dir.
+  "comps_dir": "comps"        // Components dir. From src_dir.
+}
+
+

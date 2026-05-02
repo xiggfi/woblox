@@ -6,8 +6,7 @@
 
 
 
-import { component_data } from "./state.ts"
-
+import { component_data, config } from "./state.ts"
 
 
 
@@ -16,6 +15,8 @@ import { component_data } from "./state.ts"
 // Populates the component_data with names and paths.
 export async function scan_components(path: string) {
     //console.log("scan_components", path);
+
+    path = config.dir_src + "/" + path;
 
     for await (const entry of Deno.readDir(path)) {
         const fullPath = path.endsWith("/") ? `${path}${entry.name}` : `${path}/${entry.name}`;

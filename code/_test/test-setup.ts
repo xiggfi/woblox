@@ -3,7 +3,7 @@
 // Does one-time test setup operations
 //
 
-import { dir, config } from "../state.ts";
+import { config } from "../state.ts";
 import { build_setup } from "../build/build-setup.ts";
 import { load_config } from "../setup.ts";
 
@@ -23,7 +23,7 @@ export function setup_test_project(): Promise<void> {
 
         // Delete all content of build dir
         try {
-            await Deno.remove(config.dir.build, { recursive: true });
+            await Deno.remove(config.dir_build, { recursive: true });
         } catch (error) {
             if (!(error instanceof Deno.errors.NotFound)) {
                 throw error; // Re-throw other errors
@@ -31,7 +31,7 @@ export function setup_test_project(): Promise<void> {
         }
 
         // recreate the build dir and comps dir inside it
-        await Deno.mkdir(`${config.dir.build}/comps`, { recursive: true });
+        await Deno.mkdir(`${config.dir_build}/comps`, { recursive: true });
 
         await build_setup();
     })();

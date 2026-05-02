@@ -2,10 +2,7 @@
   "pages": [
     "test-page.html"
   ],
-  "dir": {
-    "project": "test-files",
-    "src": "src",
-    "build": "build",
-    "comps": "comps"
-  }
+  "dir_src": "test-files/src",
+  "dir_build": "test-files/build",
+  "dir_comps": "comps"
 }

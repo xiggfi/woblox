@@ -14,19 +14,12 @@ export const component_data: Record<string, ComponentData> = {}
 export const page_data: Record<string, PageData> = {}
 
 
-// Directories
-export let dir = {
-    project: ".",
-    src: "src",
-    build: "build",
-
-    // dir inside of src dir
-    comps: "comps",
-}
 
 export let config: Config = {
     pages: [],
-    dir: dir,
+    dir_src: "src",
+    dir_build: "build",
+    dir_comps: "comps",
 }
 
 

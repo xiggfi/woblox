@@ -2,11 +2,10 @@
 //
 // Does one-time test setup operations
 //
-
-import { dir } from "../state.ts";
 import { build_setup } from "../build/build-setup.ts";
 import { load_config } from "../setup.ts";
 
+// This file is NOT in use.
 // This is an experimental, alternative implementation.
 // It doesn't work ?? apparently.
 // See test-setup.ts for the working implementation.

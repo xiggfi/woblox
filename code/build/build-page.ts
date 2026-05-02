@@ -17,11 +17,11 @@ export async function build_page() {
 }
 
 async function process_page(pageName: string) {
-    const pagePath = `${config.dir.src}/${pageName}`;
-    
+    const pagePath = `${config.dir_src}/${pageName}`;
+
     // Determine required components for the page.
     const requiredComponents = await get_required_components(pagePath);
-    
+
     // Check page timestamps. To determine if the page needs a build.
     // If not, skip the page.
     const needsBuild = await check_if_page_needs_build(pageName, requiredComponents);
@@ -115,7 +115,7 @@ function parse_component(raw_html: string): ParsedComponent {
 }
 
 async function generate_component_script(tagName: string, scriptContent: string) {
-    const buildPath = `${config.dir.build}/comps/${tagName}.ts`;
+    const buildPath = `${config.dir_build}/comps/${tagName}.ts`;
     await write_file(buildPath, scriptContent.trim() + "\n");
 }
 
@@ -141,9 +141,9 @@ async function generate_page_file(pageName: string, pageHtml: string, injectedHt
         newPageHtml = injectedHtml + '\n' + pageHtml;
     }
 
-    const buildPath = `${config.dir.build}/${pageName}`;
+    const buildPath = `${config.dir_build}/${pageName}`;
     await write_file(buildPath, newPageHtml);
-    
+
     // Update page build time
     if (page_data[pageName]) {
         page_data[pageName].build_time = Date.now();

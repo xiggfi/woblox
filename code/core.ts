@@ -3,7 +3,7 @@
 // Implementation of the framework operations.
 // export functions here are called by the public API.
 //
-import { component_data, dir, config, page_data } from "./state.ts"
+import { component_data, config, page_data } from "./state.ts"
 import { load_file } from "./file/file.ts"
 import { parse_component } from "./parse.ts"
 import { copy_newer } from "./file/file-time.ts";
@@ -24,8 +24,8 @@ async function load_components(path: string) {
 // Copies all files outside of components dir.
 export async function copy_files() {
 
-    const src = dir.src
-    const dest = dir.build
+    const src = config.dir_src
+    const dest = config.dir_build
 
     try {
         console.log("Syncing assets...");

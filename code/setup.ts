@@ -17,19 +17,10 @@ export async function load_config(path?: string) {
     const text = await load_file(config_file_path);
     const config_json = JSON.parse(text);
 
-    // get project dir
-    let project_dir = "."
-    if (config_json.dir && config_json.dir.project) {
-        project_dir = config_json.dir.project;
-    }
-    config.dir.project = project_dir;
-
-    // get dirs
-    if (config_json.dir) {
-        config.dir.src = `${project_dir}/${config_json.dir.src}`;
-        config.dir.build = `${project_dir}/${config_json.dir.build}`;
-        config.dir.comps = `${config.dir.src}/${config_json.dir.comps}`;
-    }
+    // get project dirs
+    if (config_json.dir_src) config.dir_src = config_json.dir_src;
+    if (config_json.dir_build) config.dir_build = config_json.dir_build;
+    if (config_json.dir_comps) config.dir_comps = config_json.dir_comps;
 
     // get pages
     if (config_json.pages) {
@@ -51,7 +42,9 @@ export async function load_config(path?: string) {
 //
 export function set_config(new_config: Config) {
     config.pages = new_config.pages;
-    config.dir = new_config.dir;
+    config.dir_src = new_config.dir_src;
+    config.dir_build = new_config.dir_build;
+    config.dir_comps = new_config.dir_comps;
 
     // Initialize page_data for the provided pages
     for (const page of new_config.pages) {

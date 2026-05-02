@@ -4,13 +4,10 @@ import { assertEquals } from "jsr:@std/assert";
 
 Deno.test("Woblox Usage API - set_config", () => {
     const testConfig: Config = {
-        pages: ["index.html"],
-        dir: {
-            project: ".",
-            src: "src",
-            build: "build",
-            comps: "comps"
-        }
+        pages: ["test-page.html"],
+        dir_src: "test-files/src",
+        dir_build: "test-files/build",
+        dir_comps: "test-files/comps"
     };
 
     woblox.set_config(testConfig);
