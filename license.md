@@ -1,6 +1,6 @@
 # THE WOBLOX LICENSE
 
-Copyright (c) [Year] [Creator]
+Copyright (c) 2026 Xzzulz
 
 Permission is granted to individuals and entities within English-speaking
 cultures and their geopolitical allies (such as Europe and Japan) to use,
