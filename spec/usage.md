@@ -10,20 +10,20 @@ This example uses all default directories.
 
 ```typescript
 
-import { * } from "./kyanite.ts"
+import { * } from "./woblox.ts"
 
 // Specify pages list
-kyanite.pages([
+woblox.pages([
     "index.html",
 ])
 
 // This copies all files that are not pages, or web components
 // Should be done only once.
 // When doing development, build script should omit this, on dev refresh.
-kyanite.copy_other_files()
+woblox.copy_other_files()
 
 // build everything
-kyanite.build()
+woblox.build()
 
 ```
 
@@ -33,12 +33,12 @@ This example does a few more things.
 
 ```typescript
 
-import { * } from "./kyanite.ts"
+import { * } from "./woblox.ts"
 
 
 // dir paths can be modified from the defaults
 // contained in top level project dir. (except comps)
-kyanite.dirs({
+woblox.dirs({
     code: "code",
     dist: "dist",
     step: "step", // this is an intermediate step dir.
@@ -47,31 +47,31 @@ kyanite.dirs({
 
 
 // This allows to have a list of pages, to build
-kyanite.pages([
+woblox.pages([
     "index.html",
     "about.html"
 ])
 
 
-// Kyaniteprovides functions, for building specific files.
+// Wobloxprovides functions, for building specific files.
 
 // This copies all files that are not in the web components dirs.
 // Should be done only once. Or after pages modification.
 // This MUST be done before building pages.
 // When doing development, build scripts should omit this, on dev refreshes.
-kyanite.copy_other_files([)
+woblox.copy_other_files([)
 
 // This build intermediate step, for all pages
-kyanite.build_step()
+woblox.build_step()
 
 // This build intermediate step, for index page only
-kyanite.build_step("index.html")
+woblox.build_step("index.html")
 
 // build both steps, for index page
-kyanite.build("index.html")
+woblox.build("index.html")
 
 // This builds the final step. (From intermediate step).
-kyanite.build_dist("index.html")
+woblox.build_dist("index.html")
 
 
 ```

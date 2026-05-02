@@ -2,7 +2,7 @@
 
 The framework will be implemnted in this way:
 * 1 Quick implementation of all low level functionality, with tests.
-* 2 Connection and refinement, of user API (`kyanite.ts`)
+* 2 Connection and refinement, of user API (`woblox.ts`)
 * Refinements and fixes
 
 Refer to `spec.md` for operation details.
@@ -25,7 +25,7 @@ File `build-2-step.ts`
 [x] Done
 
 ## 4 Implement user API
-File `kyanite.ts`
+File `woblox.ts`
 [ ] Done
 
 ## 5 Refinements and fixes

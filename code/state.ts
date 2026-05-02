@@ -1,6 +1,6 @@
 // data.ts
 //
-// Data storage for kyanite
+// Data storage for woblox
 
 
 import { ComponentData, Config, PageData } from "./object.ts"

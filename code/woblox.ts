@@ -1,6 +1,6 @@
-// kyanite.ts
+// woblox.ts
 //
-// Main kyanite usage API
+// Main woblox usage API
 //
 // This file is the user API.
 // It is a clean, simple interface for the user.
@@ -12,11 +12,11 @@ import * as setup from "./setup.ts"
 import { Config } from "./object.ts"
 
 
-// Kyanite essential API
+// Woblox essential API
 // Essential methods for usage.
 // Advanced methods, are in the "advanced" namespace object.
 //
-export const kyanite = {
+export const woblox = {
 
 
     // Sets config values manually.
@@ -26,7 +26,7 @@ export const kyanite = {
     },
 
 
-    // Load a kyanite config file from the specified path.
+    // Load a woblox config file from the specified path.
     load_config: async (path: string) => {
         await setup.load_config(path);
     },

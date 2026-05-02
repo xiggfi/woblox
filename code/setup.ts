@@ -13,7 +13,7 @@ import { config, page_data } from "./state.ts";
 //
 export async function load_config(path?: string) {
 
-    const config_file_path = (path ? path : ".") + "/kyanite-config.json";
+    const config_file_path = (path ? path : ".") + "/woblox-config.json";
     const text = await load_file(config_file_path);
     const config_json = JSON.parse(text);
 

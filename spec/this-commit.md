@@ -39,11 +39,11 @@ The build script was failing to generate output files because the core build log
 ## Changes Made
 
 ### Core Logic
-- **[core.ts](file:///home/linx/src/web/kyanite/code/core.ts)**: Updated the `build` function to call `build_setup()` and `build_page_impl()` from the internal build modules. This ensures that the build pipeline actually executes.
-- **[file.ts](file:///home/linx/src/web/kyanite/code/file/file.ts)**: Updated `write_file` to use `Deno.mkdir(..., { recursive: true })` before writing. This prevents "No such file or directory" errors when writing to new subdirectories like `build-out/comps/`.
+- **[core.ts](file:///home/linx/src/web/woblox/code/core.ts)**: Updated the `build` function to call `build_setup()` and `build_page_impl()` from the internal build modules. This ensures that the build pipeline actually executes.
+- **[file.ts](file:///home/linx/src/web/woblox/code/file/file.ts)**: Updated `write_file` to use `Deno.mkdir(..., { recursive: true })` before writing. This prevents "No such file or directory" errors when writing to new subdirectories like `build-out/comps/`.
 
 ### Test Project
-- **[build.ts](file:///home/linx/src/web/kyanite/test-files/build.ts)**: Added a call to `kyanite.load_config("test-files")`. This allows the Kyanite framework to find the `kyanite-config.json` file and correctly map the source and build directories.
+- **[build.ts](file:///home/linx/src/web/woblox/test-files/build.ts)**: Added a call to `woblox.load_config("test-files")`. This allows the Woblox framework to find the `woblox-config.json` file and correctly map the source and build directories.
 
 ## Verification Results
 

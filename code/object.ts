@@ -1,6 +1,6 @@
 // object.ts
 //
-// various type definitions used in kyanite
+// various type definitions used in woblox
 //
 
 
@@ -21,7 +21,7 @@ export interface PageData {
 }
 
 
-// This is the format for kyanite-config.json file
+// This is the format for woblox-config.json file
 export interface Config {
     pages: string[]
     dir: {

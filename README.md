@@ -1,4 +1,4 @@
-# Kyanite
+# Woblox
 A minimalist web framework.
 For building component-based web-apps.
 Uses Deno and Native Web Components.
@@ -20,11 +20,11 @@ Or in advanced use cases, server-side rendering.
 
 
 ## Usefulness
-Kyanite is minimalist. All that it does, is to pre-compiles pages.
+Woblox is minimalist. All that it does, is to pre-compiles pages.
 With sets of web-components, into bundles.
 The web-component approach, eases page development and maintenance.
 
-Kyanite is a good choice for any-size web-apps, with moderate
+Woblox is a good choice for any-size web-apps, with moderate
 amounts of functionality. Not heavy complexity.
 In these cases, adding a large web framework, adds complexity to
 projects. That may be more expensive, than the problems that are solving.

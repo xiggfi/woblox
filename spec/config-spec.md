@@ -6,7 +6,7 @@ In the build script, the user can specify a path to the config file.
 The config file contains:
 
 * Pages
-  The list of pages that use Kyanite components.
+  The list of pages that use Woblox components.
  `pages`: Array of page full paths.
   
 * Directories

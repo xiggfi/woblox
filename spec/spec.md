@@ -1,4 +1,4 @@
-# Project Kyanite Specification
+# Project Woblox Specification
 
 A minimalist web framework. 
 For building component-based websites.
@@ -7,7 +7,7 @@ Using Deno and Native Web Components.
 
 
 ## Core Concept
-Kyanite is a **Build-Time Framework**.
+Woblox is a **Build-Time Framework**.
 It transforms a directory of `.html` components and a "Page" template,
 from an efficient format. Into an html compatible set of files.
 It avoids a heavy runtime library, by leveraging native Browser **Custom Elements**.
@@ -20,7 +20,7 @@ It avoids a heavy runtime library, by leveraging native Browser **Custom Element
 
 
 ## Compilation Pipeline (The "Build")
-Kyanite provides users a build steps, for a specific page:
+Woblox provides users a build steps, for a specific page:
 * **step** - Builds the page in `step/` directory.
     With compiled web-components, their templates and scripts.
 
@@ -28,12 +28,12 @@ The user may want to run one specific step, or both.
 
 The build process, will be used repeatedly, during dev. So it must be fast and efficient.
 
-Kyanite uses files timestamps.
+Woblox uses files timestamps.
 To build only things that have been modified.
 
-The user must create a `kyanite-config.json` on the `code` dir.
+The user must create a `woblox-config.json` on the `code` dir.
 This file contains:
-- The page list, that are using kyanite components.
+- The page list, that are using woblox components.
 - Optional: The build directories.
 See `config-spec.md` for more details.
 
@@ -48,7 +48,7 @@ These steps are performed for both "step" and "dist" builds:
 This is done by `build-1-setup.ts` file.
 Involves reading file data, and storing it in state variables.
 
-* **config file** Read `kyanite-config.json` file.
+* **config file** Read `woblox-config.json` file.
   This file contains the list of pages to build.
   (Full filepath with filename).
   And the directories configuration.
@@ -112,20 +112,20 @@ The following steps are performed:
 
 
 ## Directory Structure
-Kyanite can be used without specifying any directories. By using the default ones.
+Woblox can be used without specifying any directories. By using the default ones.
 Modyfying them is also possible.
 
 ```text
 my-project/
-|── kyanite-config.json    # config
+|── woblox-config.json    # config
 ├── src/                  # Source code directory
 │   |── index.html    # A page template
 |   └── comps/        # Component fragments
 |       ├── nav-bar.html
 |       └── user-card.html
 ├── build/            # The user build scripts
-│   |── build.ts      # User build script, using Kyanite API
-|   └── build-2.ts    # Another build script, using Kyanite API
+│   |── build.ts      # User build script, using Woblox API
+|   └── build-2.ts    # Another build script, using Woblox API
 └── build-out/        # Generated build output
 ```
 

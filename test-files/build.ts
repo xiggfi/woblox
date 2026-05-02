@@ -7,10 +7,10 @@
 //  deno run -R=./test-files -W=./test-files test-files/build.ts
 
 
-import { kyanite } from "../code/kyanite.ts";
+import { woblox } from "../code/woblox.ts";
 
 
 
-await kyanite.load_config("test-files");
-await kyanite.build();
+await woblox.load_config("test-files");
+await woblox.build();
 
