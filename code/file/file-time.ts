@@ -81,10 +81,10 @@ async function ensure_dir(path: string) {
 
 
 // Describes files and dirs that should be ignored by copy_newer
-interface IgnoreFiles {
-  files: string[]       // list of file paths to ignore
-  dirs: string[]        // list of directory paths, to ignore
-}
+// Using a Map for fast lookup, O(1)
+// Key: full pathname to files and dirs
+// Value: true
+export type IgnoreFiles = Record<string, boolean>
 
 
 //
