@@ -28,7 +28,7 @@ function get_ignore_files(): IgnoreFiles {
     ignore[config.dir_src + '/' + config.dir_comps] = true
 
     for (const page in page_data) {
-        ignore[page_data[page].file_path] = true
+        ignore[config.dir_src + '/' + page_data[page].file_path] = true
     }
 
     return ignore

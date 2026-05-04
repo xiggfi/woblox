@@ -120,6 +120,41 @@ export async function copy_newer(srcDir: string, destDir: string, ignore: Ignore
 // To better handle `ignore`, does not uses `std/fs/walk`
 //
 export async function copy_newer(srcDir: string, destDir: string, ignore: IgnoreFiles) {
+  // Verify source exists
+  try {
+    const srcStat = await Deno.stat(srcDir);
+    if (!srcStat.isDirectory) {
+      throw new Error(`Source path "${srcDir}" is not a directory.`);
+    }
+  } catch (err) {
+    if (err instanceof Deno.errors.NotFound) {
+      throw new Error(`Source directory "${srcDir}" not found.`);
+    }
+    throw err;
+  }
 
+  const walk = async (currentSrc: string, currentDest: string) => {
+    for await (const entry of Deno.readDir(currentSrc)) {
+      const srcPath = join(currentSrc, entry.name);
+      const destPath = join(currentDest, entry.name);
+
+      // Efficiently handle ignore: skip ignored files and directories
+      if (ignore[srcPath]) {
+        continue;
+      }
+
+      if (entry.isDirectory) {
+        await walk(srcPath, destPath);
+      } else if (entry.isFile) {
+        if (await is_newer(srcPath, destPath)) {
+          await ensure_dir(destPath);
+          await Deno.copyFile(srcPath, destPath);
+          console.log(`Updated: ${relative(srcDir, srcPath)}`);
+        }
+      }
+    }
+  };
+
+  await walk(srcDir, destDir);
 }
 
