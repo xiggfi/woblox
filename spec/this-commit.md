@@ -21,4 +21,19 @@ We need to ignore:
 
 [x] Type definition for ignore files
 [x] Function to get list of files and dirs to ignore
+
+## Tests for copy_newer
+Test are ready. To evaluate the new implementation.
+[x] Done
+
+## Handle `ignore` parameter
+We need a new implementation for `copy_newer`.
+For it to efficiently handle `ignore`.
+It must not be based on Deno `std/fs/walk`.
+It must be a plain recursive function.
+Using read and write file functions.
+
+Test with:
+`deno test -R=./test-files/ -W=./test-files/ ./code/file/file-time.test.ts`
+
 [ ] `copy_newer` function implementation of `ignore` parameter

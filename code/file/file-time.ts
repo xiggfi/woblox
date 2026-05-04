@@ -92,6 +92,7 @@ export type IgnoreFiles = Record<string, boolean>
 // Only overwrites if the source file is more recent.
 // ignore: IgnoreFiles : files and dirs to ignore (not implemented yet)
 //
+/*
 export async function copy_newer(srcDir: string, destDir: string, ignore: IgnoreFiles) {
   // Verify source exists
   const srcStat = await Deno.stat(srcDir);
@@ -111,3 +112,14 @@ export async function copy_newer(srcDir: string, destDir: string, ignore: Ignore
     }
   }
 }
+  */
+
+
+//
+// Copy files from source to destination.
+// To better handle `ignore`, does not uses `std/fs/walk`
+//
+export async function copy_newer(srcDir: string, destDir: string, ignore: IgnoreFiles) {
+
+}
+
