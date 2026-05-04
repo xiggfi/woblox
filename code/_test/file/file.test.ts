@@ -62,7 +62,7 @@ await Deno.test("copy_newer ignore dir", async () => {
 
 await Deno.test("copy_newer overwrite", async () => {
     // Modifiy `test-file-2.txt` and veriy again
-    await Deno.writeTextFile("test-files/copy-files/test-file-2.txt", "modified");
+    await Deno.writeTextFile("test-files/src/test-file-2.txt", "modified");
     const ignore: IgnoreFiles = {};
     ignore[`${config.dir_src}/ignore.txt`] = true;
     ignore[`${config.dir_src}/comps`] = true;
@@ -82,5 +82,8 @@ Deno.test.afterAll(async () => {
     // Empty the dir to finish
     await Deno.remove("test-files/copy-files", { recursive: true }).catch(() => { });
     await Deno.mkdir("test-files/copy-files");
+
+    // revert changes on `src` test files
+    await Deno.writeTextFile("test-files/src/test-file-2.txt", "test-file-2");
 
 })
