@@ -4,6 +4,7 @@ They benefit from `.html` syntax highlight, in code editors.
 Component name is taken from the filename.
 A dash symbol in the component name, is required.
 Comps dir may have sub-dirs, but its hierarchy is meaningless. Names must be unique.
+This file, is called "component definition file", or "Woblox component".
 
 ```html
 <!-- comps/comp-card.html -->

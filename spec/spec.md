@@ -100,9 +100,7 @@ The following steps are performed:
     * Parse the component.
       Extracts `<template>`, `<style>`, and `<script>` for each component.
     * Creates a `component-name.ts` file. In target `build/comps/` dir.
-      The content, set to the content from the `<script>`, tag from the web-component `.html` definition file.
-      (Copying the script content, is an initial, simple implementation.
-      It may be improved in the future).
+      See `comp-proc.md` for details.
     * Update the component "build" timestamp, to not re-build it.
       (When building multiple pages).
     * Writes web-component templates, at the top of page body.
