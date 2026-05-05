@@ -1,3 +1,10 @@
+// File-time tests
+//
+// Important:
+// Some of these tests, rely on awaiting previous test.
+// Pay close attention to that: `await Deno.test(... ...)`
+//
+
 
 import { assert, assertEquals } from "jsr:@std/assert";
 import { exists } from "jsr:@std/fs";
@@ -45,8 +52,15 @@ await Deno.test("copy_newer", async () => {
     assert(await exists("test-files/copy-files/test-file-2.txt"));
 })
 
+Deno.test("copy_newer subdir", async () => {
 
-await Deno.test("copy_newer ignore files", async () => {
+    // Verify subdir file was copied
+    assert(await exists("test-files/copy-files/subdir/subdir-file.txt"));
+
+})
+
+
+Deno.test("copy_newer ignore files", async () => {
 
     // assert that `ignore.txt` was not copied.
     assert(!(await exists("test-files/copy-files/ignore.txt")));
@@ -54,13 +68,13 @@ await Deno.test("copy_newer ignore files", async () => {
 
 
 
-await Deno.test("copy_newer ignore dir", async () => {
+Deno.test("copy_newer ignore dir", async () => {
     // assert that `comps` dir was not copied.
     assert(!(await exists("test-files/copy-files/comps")));
 })
 
 
-await Deno.test("copy_newer overwrite", async () => {
+Deno.test("copy_newer overwrite", async () => {
     // Modifiy `test-file-2.txt` and veriy again
     await Deno.writeTextFile("test-files/src/test-file-2.txt", "modified");
     const ignore: IgnoreFiles = {};
