@@ -11,9 +11,23 @@ import { load_file, write_file } from "../file/file.ts";
 import { get_components } from "../page.ts";
 
 export async function build_page() {
+    await ensure_framework_lib();
     for (const pageName of config.pages) {
         await process_page(pageName);
     }
+}
+
+async function ensure_framework_lib() {
+    const libPath = `${config.dir_build}/comps/woblox-comp.ts`;
+    // We could read from a file or just have the content here.
+    // Given it's a small framework lib, let's just write it.
+    const content = `export function comp_init(name, template, style) {
+    const shadowRoot = this.attachShadow({ mode: "closed" });
+    shadowRoot.appendChild(template.cloneNode(true));
+    shadowRoot.appendChild(style);
+}
+`;
+    await write_file(libPath, content);
 }
 
 async function process_page(pageName: string) {
@@ -30,15 +44,18 @@ async function process_page(pageName: string) {
     }
 
     let pageHtml = await load_file(pagePath);
-    let injectedHtml = "";
+    let templatesHtml = "";
+    let scriptsHtml = "";
 
     for (const tagName of requiredComponents) {
-        const compHtml = await process_component(tagName);
-        if (compHtml) {
-            injectedHtml += compHtml + "\n";
+        const compParts = await process_component(tagName);
+        if (compParts) {
+            templatesHtml += compParts.templateHtml + "\n";
+            scriptsHtml += compParts.scriptHtml + "\n";
         }
     }
 
+    const injectedHtml = templatesHtml + "\n" + scriptsHtml;
     // Generate the page file. In `build` dir.
     await generate_page_file(pageName, pageHtml, injectedHtml);
 }
@@ -67,7 +84,7 @@ async function check_if_page_needs_build(pageName: string, requiredComponents: s
     return false;
 }
 
-async function process_component(tagName: string): Promise<string | null> {
+async function process_component(tagName: string): Promise<{ templateHtml: string, scriptHtml: string } | null> {
     const comp = component_data[tagName];
     if (!comp) return null;
 
@@ -78,13 +95,13 @@ async function process_component(tagName: string): Promise<string | null> {
 
     if (needsBuild) {
         // Generate the component scripts files. In `build/comps` dir.
-        await generate_component_script(tagName, parts.script);
+        await generate_component_script(tagName, parts.script, parts.style);
         // Update the component "build" timestamp
         comp.build_time = Date.now();
     }
 
     // Prepare the HTML to inject into the page
-    return format_component_injection(tagName, parts.templateAttrs, parts.template, parts.style);
+    return format_component_injection(tagName, parts.templateAttrs, parts.template);
 }
 
 function check_if_component_needs_build(tagName: string): boolean {
@@ -114,20 +131,28 @@ function parse_component(raw_html: string): ParsedComponent {
     };
 }
 
-async function generate_component_script(tagName: string, scriptContent: string) {
+async function generate_component_script(tagName: string, scriptContent: string, styleContent: string) {
+    const className = tagName.split('-').map(part => part.charAt(0).toUpperCase() + part.slice(1)).join('_');
+    const styleEscaped = styleContent.trim().replace(/\\/g, "\\\\").replace(/`/g, "\\`").replace(/\$/g, "\\$");
+
+    let finalScript = scriptContent.trim() + "\n\n";
+    finalScript += `// Framework inserted component-setup code:\n`;
+    finalScript += `customElements.define("${tagName}", ${className});\n`;
+    finalScript += `const style = document.createElement("style");\n`;
+    finalScript += `style.textContent = \`${styleEscaped}\`;\n`;
+    finalScript += `const template = document.getElementById("${tagName}").content;\n`;
+
     const buildPath = `${config.dir_build}/comps/${tagName}.ts`;
-    await write_file(buildPath, scriptContent.trim() + "\n");
+    await write_file(buildPath, finalScript);
 }
 
-function format_component_injection(tagName: string, templateAttrs: string, template: string, style: string): string {
-    let html = `<!-- Component: ${tagName} -->\n`;
-    html += `<template id="${tagName}"${templateAttrs}>\n`;
-    if (style.trim()) {
-        html += `<style>\n${style.trim()}\n</style>\n`;
-    }
-    html += `${template.trim()}\n</template>\n`;
-    html += `<script src="comps/${tagName}.ts" type="module"></script>`;
-    return html;
+function format_component_injection(tagName: string, templateAttrs: string, template: string): { templateHtml: string, scriptHtml: string } {
+    let templateHtml = `<!-- Component: ${tagName} -->\n`;
+    templateHtml += `<template id="${tagName}"${templateAttrs}>\n`;
+    templateHtml += `${template.trim()}\n</template>`;
+    
+    let scriptHtml = `<script src="comps/${tagName}.ts" type="module"></script>`;
+    return { templateHtml, scriptHtml };
 }
 
 async function generate_page_file(pageName: string, pageHtml: string, injectedHtml: string) {
