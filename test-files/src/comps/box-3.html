@@ -5,23 +5,15 @@
 </template>
 
 <script>
+import { comp_init } from "woblox-comp.ts"
 
-  class Box3 extends HTMLElement {
+class Box_3 extends HTMLElement {
     constructor() {
-      // Always call super first in constructor (?)
-      super();
-
-      this.addEventListener('click', () => console.log('box-3 Clicked!'));
+        super();
+        comp_init("box-3", template, style);
+        this.addEventListener('click', () => console.log('box-3 Clicked!'));
     }
-    // Element functionality written in here
-  }
-
-  customElements.define("box-3", Box3);
-
-  const shadowRoot = this.attachShadow({ mode: "closed" });
-  let template = document.getElementById("box-3").content;
-  shadowRoot.appendChild(template.cloneNode(true));
-
+}
 </script>
 
 <style>

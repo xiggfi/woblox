@@ -29,6 +29,20 @@ Deno.test("Step component files generated", async () => {
         const fileInfo = await Deno.stat(compPath);
         assert(fileInfo.isFile, `Component script ${comp}.ts should be generated in build dir`);
     }
+
+    const libPath = `${config.dir_build}/comps/woblox-comp.ts`;
+    const libInfo = await Deno.stat(libPath);
+    assert(libInfo.isFile, "woblox-comp.ts should be generated in build dir");
+});
+
+Deno.test("Component script contains setup code", async () => {
+    const compPath = `${config.dir_build}/comps/box-1.ts`;
+    const content = await load_file(compPath);
+
+    assertStringIncludes(content, 'customElements.define("box-1", Box_1);');
+    assertStringIncludes(content, 'const style = document.createElement("style");');
+    assertStringIncludes(content, 'style.textContent = `');
+    assertStringIncludes(content, 'const template = document.getElementById("box-1").content;');
 });
 
 Deno.test("Page contains injected component scripts", async () => {

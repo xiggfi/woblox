@@ -14,5 +14,5 @@ Need to update Woblox build process. According to the
 new directions from the spec.
 
 - [x] Update build process
-- [ ] Update tests
+- [x] Update tests
 
