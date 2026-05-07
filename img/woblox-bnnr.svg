@@ -7,33 +7,10 @@
    viewBox="0 0 541.86663 285.75"
    version="1.1"
    id="svg1"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
   <defs
-     id="defs1">
-    <linearGradient
-       id="linearGradient85">
-      <stop
-         style="stop-color:#2d2856;stop-opacity:1;"
-         offset="0"
-         id="stop84" />
-      <stop
-         style="stop-color:#121229;stop-opacity:1;"
-         offset="1"
-         id="stop85" />
-    </linearGradient>
-    <radialGradient
-       xlink:href="#linearGradient85"
-       id="radialGradient84-7-3"
-       cx="488.23022"
-       cy="135.59982"
-       fx="488.23022"
-       fy="135.59982"
-       r="12.90134"
-       gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(13.969087,0,0,9.9955893,-6552.4363,-1188.7582)" />
-  </defs>
+     id="defs1" />
   <g
      id="layer2">
     <rect
@@ -47,92 +24,66 @@
   <g
      id="layer1">
     <g
-       id="g87"
-       transform="matrix(1.0920035,0,0,1.0920035,-18.220347,2.094244)">
+       id="g1"
+       transform="matrix(5.9383046,0,0,5.9383046,-2439.9182,-1118.4947)">
       <rect
-         style="fill:url(#radialGradient84-7-3);fill-opacity:1;stroke-width:0.38618"
-         id="rect3-6-7-9-2-6-6-6-0-5-4-9"
-         width="186.33783"
-         height="186.33783"
-         x="171.62297"
-         y="35.750778" />
+         style="fill:#060828;fill-opacity:1;stroke:none;stroke-width:1.76594"
+         id="rect15-3-0-4"
+         width="38.509354"
+         height="38.509354"
+         x="437.24792"
+         y="193.15775" />
+      <rect
+         style="fill:#0e114d;fill-opacity:1;stroke:none;stroke-width:2.64345"
+         id="rect16-8-1-0"
+         width="28.400467"
+         height="28.400467"
+         x="442.30237"
+         y="198.21217" />
+      <rect
+         style="fill:#1f1396;fill-opacity:1;stroke-width:0.522165"
+         id="rect2-0-0-2-8"
+         width="23.789412"
+         height="23.789412"
+         x="461.09967"
+         y="-184.49257"
+         transform="rotate(45)" />
       <g
-         id="g86"
-         transform="matrix(3.3435835,0,0,3.3435835,15.950326,-512.72633)">
-        <path
-           style="fill:none;fill-opacity:1;stroke:#1348ff;stroke-width:10.6335;stroke-dasharray:none;stroke-opacity:1"
-           id="path1-32-5-6-8-2-9-8-2-3-7-9"
-           d="M 51.615531,58.439775 8.6178867,58.439774 30.116709,21.202723 Z"
-           transform="matrix(0.35049143,0,0,-0.35049143,53.10517,216.56009)" />
-        <path
-           style="fill:none;fill-opacity:1;stroke:#1348ff;stroke-width:10.6335;stroke-dasharray:none;stroke-opacity:1"
-           id="path1-3-0-87-1-3-5-4-3-4-4-4-32"
-           d="M 51.615531,58.439775 8.6178867,58.439774 30.116709,21.202723 Z"
-           transform="matrix(0.35049143,0,0,-0.35049143,74.63075,216.56009)" />
-      </g>
-      <g
-         id="g3-3-7-9-8-4"
-         transform="matrix(7.0932128,0,0,7.0932128,-2768.7866,-342.05529)">
+         id="g16-5"
+         transform="matrix(0.6314138,0,0,0.6314138,183.35699,71.078321)"
+         style="fill:#5c117b;fill-opacity:1">
         <rect
-           style="fill:#531663;fill-opacity:1;stroke-width:0.0749662"
-           id="rect2-6-9-6-0-0-8-4-2-3-9-0-5-37"
-           width="3.4854763"
-           height="3.3467286"
-           x="423.59824"
-           y="56.839115" />
+           style="fill:#5c117b;fill-opacity:1;stroke-width:0.299655"
+           id="rect2-3-2-5-8-1-1"
+           width="16.083967"
+           height="11.587831"
+           x="442.28909"
+           y="-153.40686"
+           transform="rotate(45)" />
         <rect
-           style="fill:#531663;fill-opacity:1;stroke-width:0.0749662"
-           id="rect2-6-9-6-0-0-8-4-5-2-8-3-2-8-1"
-           width="3.4854763"
-           height="3.3467286"
-           x="433.04453"
-           y="56.839115" />
+           style="fill:#5c117b;fill-opacity:1;stroke-width:0.299655"
+           id="rect2-3-2-5-8-3-7-6"
+           width="16.083967"
+           height="11.587831"
+           x="469.96091"
+           y="-153.40686"
+           transform="rotate(45)" />
         <rect
-           style="fill:#161a63;fill-opacity:1;stroke-width:0.0769148"
-           id="rect2-6-9-6-6-1-4-4-0-4-6-0-9-0-2-2"
-           width="3.5760856"
-           height="3.4337301"
-           x="418.82977"
-           y="56.795612" />
+           style="fill:#5c117b;fill-opacity:1;stroke-width:0.299655"
+           id="rect2-3-2-5-8-3-9-5-6"
+           width="16.083967"
+           height="11.587831"
+           x="-141.81905"
+           y="-469.96091"
+           transform="rotate(135)" />
         <rect
-           style="fill:#161a63;fill-opacity:1;stroke-width:0.0769148"
-           id="rect2-6-9-6-6-1-4-4-5-4-9-4-4-2-1-6-20"
-           width="3.5760856"
-           height="3.4337301"
-           x="428.27606"
-           y="56.795612" />
-        <rect
-           style="fill:#531663;fill-opacity:1;stroke-width:0.0749662"
-           id="rect2-6-9-6-0-0-8-4-3-1-7-8-9-0-2"
-           width="3.4854763"
-           height="3.3467286"
-           x="-431.7486"
-           y="61.483078"
-           transform="scale(-1,1)" />
-        <rect
-           style="fill:#531663;fill-opacity:1;stroke-width:0.0749662"
-           id="rect2-6-9-6-0-0-8-4-5-5-2-6-3-6-6-1"
-           width="3.4854763"
-           height="3.3467286"
-           x="-422.30228"
-           y="61.483078"
-           transform="scale(-1,1)" />
-        <rect
-           style="fill:#161a63;fill-opacity:1;stroke-width:0.0769148"
-           id="rect2-6-9-6-6-1-4-4-0-4-1-8-8-01-2-6-7"
-           width="3.5760856"
-           height="3.4337301"
-           x="-436.51709"
-           y="61.43959"
-           transform="scale(-1,1)" />
-        <rect
-           style="fill:#161a63;fill-opacity:1;stroke-width:0.0769148"
-           id="rect2-6-9-6-6-1-4-4-5-4-9-7-8-9-7-1-4-5"
-           width="3.5760856"
-           height="3.4337301"
-           x="-427.07074"
-           y="61.43959"
-           transform="scale(-1,1)" />
+           style="fill:#5c117b;fill-opacity:1;stroke-width:0.299655"
+           id="rect2-3-2-5-8-3-9-3-1-2"
+           width="16.083967"
+           height="11.587831"
+           x="-169.49084"
+           y="-469.96091"
+           transform="rotate(135)" />
       </g>
     </g>
   </g>
