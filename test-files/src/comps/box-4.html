@@ -5,15 +5,15 @@
 </template>
 
 <script>
-import { comp_init } from "woblox-comp.ts"
+  import { comp_init } from "./woblox-comp.ts"
 
-class Box_4 extends HTMLElement {
+  class Box_4 extends HTMLElement {
     constructor() {
-        super();
-        comp_init("box-4", template, style);
-        this.addEventListener('click', () => console.log('box-4 Clicked!'));
+      super();
+      comp_init("box-4", template, style);
+      this.addEventListener('click', () => console.log('box-4 Clicked!'));
     }
-}
+  }
 </script>
 
 <style>

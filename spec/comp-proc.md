@@ -23,7 +23,7 @@ The compiler must pick the "mode" from the <template>.
 </style>
 
 <script>
-import { comp_init } from "woblox-comp.ts"  // This import is always included
+import { comp_init } from "./woblox-comp.ts"  // This import is always included
 import { something } from "somescript.ts"   // User imports ...
 
 class Comp_Card extends HTMLElement {
@@ -49,8 +49,8 @@ The script includes:
   With style and template const.
 
 
-```typescript
-import { comp_init } from "woblox-comp.ts"  // This import is always included
+```ts
+import { comp_init } from "./woblox-comp.ts"  // This import is always included
 import { something } from "somescript.ts"   // user imports...
 
 class Comp_Card extends HTMLElement {

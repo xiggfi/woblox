@@ -8,7 +8,7 @@ This file, is called "component definition file", or "Woblox component".
 
 ```html
 <!-- comps/comp-card.html -->
-<template id="comp-card">
+<template mode="closed">
   <div>
     <slot></slot>
   </div>
@@ -21,24 +21,18 @@ This file, is called "component definition file", or "Woblox component".
 </style>
 
 <script>
-    //
-    // This is copied into the component script file.
-    //
+import { comp_init } from "./woblox-comp.ts"  // This import is always included
+import { something } from "somescript.ts"   // User imports ...
 
-    class CompCard extends HTMLElement {
-        constructor() {
-            // Always call super first in constructor (?)
-            super();
-        }
-        // Element functionality written in here
+class Comp_Card extends HTMLElement {
+    constructor() {
+        super()
+        comp_init("comp-card", template, style);
+        // ... User code
     }
-    
-    customElements.define("comp-card", CompCard);
-    
-    const shadowRoot = this.attachShadow({ mode: "closed" });
-    let template = document.getElementById("comp-card").content;
-    shadowRoot.appendChild(template.cloneNode(true));
-
+    // User class code
+    // ...
+}
 </script>
 ```
 
