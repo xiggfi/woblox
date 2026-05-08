@@ -6,9 +6,11 @@
 // templates at the top of the body.
 // And the web-components scripts addeds as ts files.
 
+import { exists } from "jsr:@std/fs";
 import { config, page_data, component_data } from "../state.ts";
 import { load_file, write_file } from "../file/file.ts";
 import { get_components } from "../page.ts";
+
 
 export async function build_page() {
     await ensure_framework_lib();
@@ -17,8 +19,19 @@ export async function build_page() {
     }
 }
 
+
+// Needs update
+// * verify path
+// * Replaced with a file copy ?
+//
+// May alternatively be implemented as a text resource import:
+// import woblox_lib from "./build/woblox-comp.ts" with { type: "text" };
 async function ensure_framework_lib() {
-    const libPath = `${config.dir_build}/comps/woblox-comp.ts`;
+    const libPath = `${config.dir_build}/${config.dir_comps}/woblox-comp.ts`;
+
+    // if file doesn't exist, create it
+    if (await exists(libPath)) return
+
     // We could read from a file or just have the content here.
     // Given it's a small framework lib, let's just write it.
     const content = `export function comp_init(name, template, style) {
@@ -150,7 +163,7 @@ function format_component_injection(tagName: string, templateAttrs: string, temp
     let templateHtml = `<!-- Component: ${tagName} -->\n`;
     templateHtml += `<template id="${tagName}"${templateAttrs}>\n`;
     templateHtml += `${template.trim()}\n</template>`;
-    
+
     let scriptHtml = `<script src="comps/${tagName}.ts" type="module"></script>`;
     return { templateHtml, scriptHtml };
 }
