@@ -7,5 +7,11 @@ Tests need dir permissions:
 deno test -R=./test-files/ -W=./test-files/
 ```
 
-## Build
+## Build the test project
+```
+deno run -R=test-files -W=test-files test-files/build.ts
+```
 
+```
+deno bundle --outdir test-files/web test-files/build/test-page.html
+```

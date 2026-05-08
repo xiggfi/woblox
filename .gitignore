@@ -3,4 +3,4 @@ deno.lock
 
 # Test files
 test-files/build/
-test-files/build-out/
+test-files/web/
