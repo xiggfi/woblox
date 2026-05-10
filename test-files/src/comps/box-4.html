@@ -10,7 +10,7 @@
   class Box_4 extends HTMLElement {
     constructor() {
       super();
-      comp_init("box-4", template, style);
+      comp_init(this, "box-4", template, style);
       this.addEventListener('click', () => console.log('box-4 Clicked!'));
     }
   }

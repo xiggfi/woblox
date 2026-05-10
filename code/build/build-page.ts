@@ -34,8 +34,10 @@ async function ensure_framework_lib() {
 
     // We could read from a file or just have the content here.
     // Given it's a small framework lib, let's just write it.
-    const content = `export function comp_init(name, template, style) {
-    const shadowRoot = this.attachShadow({ mode: "closed" });
+    const content = `export function comp_init(comp, name, template, style) {
+    const templateEl = document.getElementById(name);
+    const mode = templateEl?.getAttribute("mode") || "open";
+    const shadowRoot = comp.attachShadow({ mode });
     shadowRoot.appendChild(template.cloneNode(true));
     shadowRoot.appendChild(style);
 }
@@ -148,12 +150,16 @@ async function generate_component_script(tagName: string, scriptContent: string,
     const className = tagName.split('-').map(part => part.charAt(0).toUpperCase() + part.slice(1)).join('_');
     const styleEscaped = styleContent.trim().replace(/\\/g, "\\\\").replace(/`/g, "\\`").replace(/\$/g, "\\$");
 
-    let finalScript = scriptContent.trim() + "\n\n";
+    let finalScript = scriptContent.trim();
+    // Fix comp_init call to include 'this' context
+    //finalScript = finalScript.replace(/comp_init\s*\(/g, "comp_init.call(this, ");
+    //finalScript += "\n\n";
+
     finalScript += `// Framework inserted component-setup code:\n`;
-    finalScript += `customElements.define("${tagName}", ${className});\n`;
     finalScript += `const style = document.createElement("style");\n`;
     finalScript += `style.textContent = \`${styleEscaped}\`;\n`;
     finalScript += `const template = document.getElementById("${tagName}").content;\n`;
+    finalScript += `customElements.define("${tagName}", ${className});\n`;
 
     const buildPath = `${config.dir_build}/comps/${tagName}.ts`;
     await write_file(buildPath, finalScript);

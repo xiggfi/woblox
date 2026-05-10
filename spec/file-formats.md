@@ -27,7 +27,7 @@ import { something } from "somescript.ts"   // User imports ...
 class Comp_Card extends HTMLElement {
     constructor() {
         super()
-        comp_init("comp-card", template, style);
+        comp_init(this, "comp-card", template, style);
         // ... User code
     }
     // User class code

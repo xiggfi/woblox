@@ -56,7 +56,7 @@ import { something } from "somescript.ts"   // user imports...
 class Comp_Card extends HTMLElement {
     constructor() {
         super();
-        comp_init("comp-card", template, style);
+        comp_init(this, "box-1", template, style);
     }
     // User class code
     // ...    
