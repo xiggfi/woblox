@@ -39,10 +39,8 @@ Deno.test("Component script contains setup code", async () => {
     const compPath = `${config.dir_build}/comps/box-1.ts`;
     const content = await load_file(compPath);
 
-    assertStringIncludes(content, 'customElements.define("box-1", Box_1);');
-    assertStringIncludes(content, 'const style = document.createElement("style");');
-    assertStringIncludes(content, 'style.textContent = `');
-    assertStringIncludes(content, 'const template = document.getElementById("box-1").content;');
+    assertStringIncludes(content, 'const template = `');
+    assertStringIncludes(content, '<div class="box">');
 });
 
 Deno.test("Page contains injected component scripts", async () => {
@@ -53,12 +51,12 @@ Deno.test("Page contains injected component scripts", async () => {
     assertStringIncludes(pageHtml, '<script src="comps/box-2.ts" type="module"></script>');
 });
 
-Deno.test("Page contains injected component templates", async () => {
+Deno.test("Page does not contain injected component templates", async () => {
     const pagePath = `${config.dir_build}/test-page.html`;
     const pageHtml = await load_file(pagePath);
 
-    assertStringIncludes(pageHtml, '<template id="box-1"');
-    assertStringIncludes(pageHtml, '<template id="box-2"');
+    assert(!pageHtml.includes('<template id="box-1"'), "Page should not contain component templates");
+    assert(!pageHtml.includes('<template id="box-2"'), "Page should not contain component templates");
 });
 
 Deno.test("Timestamps are updated in state", async () => {

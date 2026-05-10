@@ -8,11 +8,11 @@ This file, is called "component definition file", or "Woblox component".
 
 ```html
 <!-- comps/comp-card.html -->
-<template mode="closed">
+<template-dom mode="closed">
   <div>
     <slot></slot>
   </div>
-</template>
+</template-dom>
 
 <style>
   div {

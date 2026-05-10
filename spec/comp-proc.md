@@ -6,15 +6,15 @@ Caps convention: `Component_Name_Class`.
 
 ## Woblox Component
 Components are defined in this form.
-The compiler must pick the "mode" from the <template>.
+The compiler picks the "mode" from the <template>.
 
 ```html
 <!-- comps/comp-card.html -->
-<template mode="closed">
+<template-dom mode="closed">
   <div>
     <slot></slot>
   </div>
-</template>
+</template-dom>
 
 <style>
   div {
@@ -29,7 +29,7 @@ import { something } from "somescript.ts"   // User imports ...
 class Comp_Card extends HTMLElement {
     constructor() {
         super()
-        comp_init("comp-card", template, style);
+        comp_init(this, "box-1", template, style);
         // ... User code
     }
     // User class code
@@ -46,7 +46,7 @@ The script includes:
 * Component class. Name convention: `Component_Class`.
 * `comp_init(...)` function, after the super() call.
 * Adds Component-setup code, at the end of the script.
-  With style and template const.
+  With style and template_dom const.
 
 
 ```ts
@@ -56,7 +56,7 @@ import { something } from "somescript.ts"   // user imports...
 class Comp_Card extends HTMLElement {
     constructor() {
         super();
-        comp_init(this, "box-1", template, style);
+        comp_init(this, "box-1", template_string, style_string);
     }
     // User class code
     // ...    
@@ -64,9 +64,8 @@ class Comp_Card extends HTMLElement {
 
 // Framework inserted component-setup code:
 customElements.define("comp-card", Comp_Card);
-const style = document.createElement("style");
-style.textContent = `...`; // here goes the style from the <style> tag
-const template = document.getElementById("comp-card").content;
+const style = `...`; // here goes the style from the <style> tag
+const template = `...`; // <shadow-dom> content goes here
 ```
 
 
@@ -77,11 +76,12 @@ as `woblox-comp.ts`:
 
 
 ```ts
-export function comp_init(name, template, style) {
-    const shadowRoot = this.attachShadow({ mode: "closed" });
-    let template = document.getElementById(name).content;
-    shadowRoot.appendChild(template.cloneNode(true));
-
+export function comp_init(comp, name, html_string, style) {
+    const template = document.createElement('template');
+    template.innerHTML = html_string.trim();
+    const mode = template?.getAttribute("mode") || "open";
+    const shadowRoot = comp.attachShadow({ mode });
+    shadowRoot.appendChild(template.ccontent);
     shadowRoot.appendChild(style);
 }
 ```

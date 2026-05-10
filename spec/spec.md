@@ -98,14 +98,13 @@ The following steps are performed:
   * Reads the source page html, into a string. To operate on it.
   * Repeats for each required web-component:
     * Parse the component.
-      Extracts `<template>`, `<style>`, and `<script>` for each component.
+      Extracts `<template-dom>`, `<style>`, and `<script>` for each component.
     * Creates a `component-name.ts` file. In target `build/comps/` dir.
       See `comp-proc.md` for details.
     * Update the component "build" timestamp, to not re-build it.
       (When building multiple pages).
-    * Writes web-component templates, at the top of page body.
     * Injects `<script src="component-name.ts" type="module">` for each web-component.
-      In the body, right after the templates.
+      In the page `<head>`.
   * Writes the modified page string, to `build/` dir, as the web-page `.html` file.
 
 
