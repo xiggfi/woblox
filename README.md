@@ -37,7 +37,13 @@ So, it has fast performance.
 
 
 ## Status
-Pre-beta. Needs some fixes to go.
+Beta.
+Framework is usable. Can build projects.
+Tested with the test project.
+
+Only support "/" filesystems.
+To run in Windows, would need some method
+that handles the "/" file paths...
 
 
 ## Web-Components
@@ -45,11 +51,11 @@ Components are defined as `.html` files.
 
 ```html
 <!-- comps/comp-card.html -->
-<template mode="closed">Kyanite 
+<template-dom mode="closed">
   <div>
     <slot></slot>
   </div>
-</template>
+</template-dom>
 
 <style>
   div {
@@ -58,8 +64,18 @@ Components are defined as `.html` files.
 </style>
 
 <script>
-  // This will be modified
-  this.addEventListener('click', () => console.log('Clicked!'));
+import { comp_init } from "./woblox-comp.ts"  // This import is always included
+import { something } from "somescript.ts"   // User imports ...
+
+class Comp_Card extends HTMLElement {
+    constructor() {
+        super()
+        comp_init(this, "box-1", template, style);
+        // ... User code
+    }
+    // User class code
+    // ...
+}
 </script>
 ```
 
@@ -72,9 +88,24 @@ Users need to provide:
 
 Run the build script, to get web-ready files.
 
-```Typescript
+A basic example:
+```ts
 import { woblox } from "code/woblox.ts";
 
 await woblox.load_config("test-files");
 await woblox.build();
 ```
+
+### API
+Usage API is in `woblox.ts`
+Check it, to understand how the framework works.
+
+`woblox-config.json` can be loaded from dir.
+Or can be included in-line.
+
+There is a function to copy all project files, to output dir.
+
+The generated output is in Typescript.
+It will be needed to convert it to javascript.
+This can be done with `deno bundle ...` command.
+Or some other method, of user preference.

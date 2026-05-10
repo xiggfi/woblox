@@ -5,23 +5,19 @@ Work described here, usually cover 1 commit.
 In some cases, it may extend over multiple commits.
 
 
-## Web-Component Html template improvements
+## Project Beta Status
 
-Web-components creation spec has been improved.
+Test project works ok.
+We can now enter beta status.
 
-The web-components template html, is now created in the script.
-It's no longer inserted into the web-page html, as `<template>`.
+Things pending to do:
 
-This is to make the web-page more clean.
-And to improve the web-component creation. More efficient.
-It no longer has to pick elements, from the page body.
+- [x] Improve readme.md
+  Better explain the project.
+  Better usage instructions.
 
-The name `<template-dom>` have been choosen, to reduce the
-chance of bugs, with a name collision, inside the content.
+- [ ] Improve project code quality
+  Review and improve code quality.
 
-- [ ] Update page-build process
-- [ ] Verify tests
-- [ ] Build the test-project, and verify it's ok
-
-
+- [ ] Test are a bit messy. Improve all tests.
 
