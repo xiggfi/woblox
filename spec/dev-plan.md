@@ -1,34 +1,18 @@
 # Development Plan
 
-The framework will be implemnted in this way:
-* 1 Quick implementation of all low level functionality, with tests.
-* 2 Connection and refinement, of user API (`woblox.ts`)
-* Refinements and fixes
+The framework is now in beta.
+It was developed in a "fast" way.
+Code quality may not be optimal.
 
-Refer to `spec.md` for operation details.
+Some things pending to do:
 
+- [ ] Bug fixes.
 
-Next steps
-==========
+- [ ] Code quality is not optimal.
+  Review and improve code quality.
 
-## 1 Create a test project
-A minimal test project, in `/test-files` dir.
-This will be used by project test code.
-[x] Done
+- [ ] Test are a bit messy.
+  Improve tests.
 
-## 2 Implement build setup
-File `build-1-setup.ts`
-[x] Done
-
-## 3 Implement build step
-File `build-2-step.ts`
-[x] Done
-
-## 4 Implement user API
-File `woblox.ts`
-[ ] Done
-
-## 5 Refinements and fixes
-[ ] Done
 
 

@@ -10,14 +10,4 @@ In some cases, it may extend over multiple commits.
 Test project works ok.
 We can now enter beta status.
 
-Things pending to do:
-
-- [x] Improve readme.md
-  Better explain the project.
-  Better usage instructions.
-
-- [ ] Improve project code quality
-  Review and improve code quality.
-
-- [ ] Test are a bit messy. Improve all tests.
 
