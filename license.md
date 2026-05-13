@@ -9,12 +9,13 @@ maintained:
 
   - THE HONOR FEE: This software was developed with profit interest. If you
     find the software provides significant benefit or profit to your work, you
-    are encouraged to provide a small proportional fee to the Creator(s). This is a
-    voluntary gesture, based on your own integrity and the value you've received.
+    are encouraged to provide a small proportional fee to the Project Owner(s).
+    This is a voluntary gesture, based on your own integrity and the
+    value you've received.
 
   - CULTURAL SCOPE: To maintain the intended community focus, use or
-    distribution of this software outside of the cultures mentioned above, is not
-    permitted.
+    distribution of this software outside of the cultures mentioned above,
+    is not permitted.
 
   - PERSISTENCE: This license, including the "profit interest" philosophy, must
     be included in all copies or substantial portions of the software, and its
