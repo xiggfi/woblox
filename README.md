@@ -8,6 +8,9 @@ Uses Deno and Native Web Components.
 Lightweight, simple framework.\
 Just a web-components compiler.
 
+Note: Do not use.\
+The project plan involves significant changes.\
+
 
 ## Targets
 * Build time pre-compiled Web-apps.
@@ -37,9 +40,10 @@ So, it has fast performance.
 
 
 ## Status
-Beta.
-Framework is usable. Can build projects.
-Tested with the test project.
+Beta. Framework is usable. Can build projects.\
+Project code is not the best quality.\
+As it has been implemented in rush mode.\
+This should improve later. 
 
 Only support "/" filesystems.
 To run in Windows, would need some method
@@ -109,3 +113,8 @@ The generated output is in Typescript.
 It will be needed to convert it to javascript.
 This can be done with `deno bundle ...` command.
 Or some other method, of user preference.
+
+
+## Copyright
+Copyright (c) 2026 Xzzulz
+The Woblox license.
